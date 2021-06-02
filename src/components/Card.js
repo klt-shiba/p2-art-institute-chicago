@@ -1,12 +1,23 @@
 import React from 'react';
+import styled, { css } from 'styled-components'
 
-const Card = () => {
+const CardContainer = styled.div`
+    background-color: white;
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.15);
+    padding: ${props => props.padding};
+`;
+
+const ImgContainer = styled.div`
+    
+`
+
+const Card = (props) => {
     return (
-        <div>
-            <img src={this.props.imgSrc} alt={"Hi"}></img>
-            <h2>{this.props.title}</h2>
-            <p>{this.props.body}</p>
-        </div>
+        <CardContainer padding={props.padding}>
+            <img src={props.imgSrc} alt={"Hi"}></img>
+            <h2>{props.title}</h2>
+            <p>{props.body}</p>
+        </CardContainer>
     )
 }
 
