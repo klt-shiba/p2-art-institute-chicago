@@ -32,7 +32,7 @@ export default class HomeContainer extends React.Component {
                                 >
                                 </Card>
                     })}
-                    <Button primary>Morning James </Button>
+                    <Button hasVariant="Primary">Morning James </Button>
             </div>
         )
     }
