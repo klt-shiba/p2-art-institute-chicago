@@ -1,16 +1,16 @@
 import React from 'react';
-import HomeContainer from '../HomeContainer';
+import ExhibitionContainer from '../ExhibitionContainer';
 import Section from '../Section'
 import { Container } from 'reactstrap';
 
-const Home = () => {
+const Exhibitions = () => {
   return (
     <Section backgroundColour={"black"}>
       <Container fluid={true}>
-        <HomeContainer/>
+        <ExhibitionContainer/>
       </Container>
     </Section>
   );
 };
 
-export default Home;
+export default Exhibitions;

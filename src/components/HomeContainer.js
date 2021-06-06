@@ -1,39 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from  './Card';
-import Button from './Button'
+import CardContainer from './CardContainer'
+import PrimaryBanner from './PrimaryBanner'
 
-export default class HomeContainer extends React.Component {
+    const HomeContainer = () => {
 
-    state = {
-        items: []
-    }
-    fetchAPI = () => {
-        fetch("https://api.spacexdata.com/v4/launches/past")
-        .then(resp => resp.json())
-        .then((data) => { 
-            const trimmedArray = data.slice(24, 25)
-            this.setState({
-                    items: trimmedArray
-                    })
-                    // console.log(this.state.items)
-                }
-                
-            )
-            .catch(error => console.log(error))
+        // Artwork array state
+        const [artwork, setArtwork] = useState(["Empty"])
+
+        // Fetches artwork API
+        const fetchAPI = async () => {
+
+            const URL = "https://api.artic.edu/api/v1/artworks?limit=2"
+    
+            const response = await fetch(URL)
+    
+            const cards = await response.json()
+ 
+            setArtwork(cards.data)
+
         }
-    render() {
+
+        // Create artwork image url
+        const imgUrl = (id) => {
+            const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
+            return URL
+        }
+
+        // Shuffle order of array
+        const randomiseArray = (array) => {
+            const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
+            return shuffledArray
+        }
+
+        useEffect(() => {
+            return fetchAPI()
+        }, []);
+
         return (
             <div>
-                    {this.fetchAPI()}
-                    {this.state.items.map((el) => {
-                        return <Card 
-                                title={el.name}
-                                padding="2rem" 
-                                >
-                                </Card>
-                    })}
-                    <Button hasVariant="Primary">Morning James </Button>
+                <PrimaryBanner
+                    imgSrc={imgUrl(artwork[0].image_id)}
+                />
             </div>
         )
     }
-}
+
+    export default HomeContainer

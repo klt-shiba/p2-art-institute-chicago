@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
 
-const Input = styled.input.attrs(props => ({
+const CustomInput = styled.input.attrs(props => ({
     // we can define static props
     type: "text",
 
@@ -45,4 +45,4 @@ const Input = styled.input.attrs(props => ({
 
   
 
-export default Input;
+export default CustomInput;

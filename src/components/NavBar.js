@@ -56,9 +56,9 @@ const NavBar = () => {
                 <StyledNavLinks to={"/"}>Home</StyledNavLinks>
             </NavRight>
             <NavLeft>
-                <StyledNavLinks to={"/movies"}>Movies</StyledNavLinks>
-                <StyledNavLinks to={"/directors"}>Directors</StyledNavLinks>
-                <StyledNavLinks to={"/actors"}>Actors</StyledNavLinks>
+                <StyledNavLinks to={"/artworks"}>Artwork</StyledNavLinks>
+                <StyledNavLinks to={"/exhibitions"}>Exhibitions</StyledNavLinks>
+                <StyledNavLinks to={"/search"}>Search</StyledNavLinks>
             </NavLeft>
         </Nav>
     </Container>

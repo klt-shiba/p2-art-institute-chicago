@@ -8,14 +8,23 @@ import {
 
 import NavBar from './components/NavBar';
 import Home from './components/pages/Home'
+import Exhibitions from './components/pages/Exhibitions';
+import Artworks from './components/pages/Artworks';
+import Details from './components/pages/Details';
+import Search from './components/pages/Search';
+
 
 function App() {
   return (
     <div className="App">
       <Router>
-      <div>
+        <div>
           <NavBar/>
-          <Route path="/" component={Home}/>
+          <Route exact path="/details" component={Details}/>
+          <Route exact path="/exhibitions" component={Exhibitions}/>
+          <Route exact path="/artworks" component={Artworks}/>
+          <Route exact path="/search" component={Search}/>
+          <Route exact path="/" component={Home}/>
         </div>
     </Router>
 

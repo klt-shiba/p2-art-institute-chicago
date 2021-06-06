@@ -1,16 +1,16 @@
 import React from 'react';
-import HomeContainer from '../HomeContainer';
+import SearchContainer from '../SearchContainer';
 import Section from '../Section'
 import { Container } from 'reactstrap';
 
-const Home = () => {
+const Search = () => {
   return (
     <Section backgroundColour={"black"}>
       <Container fluid={true}>
-        <HomeContainer/>
+        <SearchContainer/>
       </Container>
     </Section>
   );
 };
 
-export default Home;
+export default Search;
