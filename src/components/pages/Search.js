@@ -6,7 +6,7 @@ import { Container } from 'reactstrap';
 const Search = () => {
   return (
     <Section backgroundColour={"black"}>
-      <Container fluid={true}>
+      <Container>
         <SearchContainer/>
       </Container>
     </Section>

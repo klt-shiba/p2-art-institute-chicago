@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Card from  './Card';
 import CardContainer from './CardContainer'
 import PrimaryBanner from './PrimaryBanner'
+import Section from './Section'
 
 const ExhibitionContainer = () => {
     // Artwork array state
-    const [exhibition, setExhibition] = useState(["Empty"])
+    const [exhibitions, setExhibition] = useState([ ])
 
     // Fetches artwork API
     const fetchAPI = async () => {
@@ -14,9 +15,11 @@ const ExhibitionContainer = () => {
 
         const response = await fetch(URL)
 
-        const cards = await response.json()
+        const exhibitions = await response.json()
 
-        setExhibition(selectExhibitionsWithImgsAndLink(cards.data))
+        setExhibition(selectExhibitionsWithImgsAndLink(exhibitions.data))
+        console.log(exhibitions.data)
+        selectImage(setExhibition(selectExhibitionsWithImgsAndLink(exhibitions.data)))
     }
 
     // Filter out exhibitions with no images
@@ -24,14 +27,14 @@ const ExhibitionContainer = () => {
         const filteredArray = array.filter((el) => {
             return (el.web_url !== null && el.image_url !== null)
         })
-        return filteredArray
+        return randomiseArray(filteredArray)
     }
 
-    // Create artwork image url
-    const imgUrl = (id) => {
-        const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
-        return URL
-    }
+    // // Create artwork image url
+    // const imgUrl = (id) => {
+    //     const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
+    //     return URL
+    // }
 
     // Shuffle order of array
     const randomiseArray = (array) => {
@@ -39,27 +42,37 @@ const ExhibitionContainer = () => {
         return shuffledArray
     }
 
+    const selectImage = (array) => {
+        const imageURL = array[0].image_url
+        console.log(imageURL)
+        return imageURL
+    }
+
+
     useEffect(() => {
-        return fetchAPI()
+        fetchAPI()
     }, []);
 
+    
     return (
         <div>
-            <PrimaryBanner
-                
-            />
-            <CardContainer>
-                {randomiseArray(exhibition).map((el) => {
-                    return <Card
-                        imgSrc={el.image_url}
-                        title={el.title}
-                        padding="0"
-                        body={el.summary}
-                        linkHref={el.web_url} 
-                        >
-                        </Card>
-                })}
+            <Section backgroundColour={"black"}>
+                <PrimaryBanner imgSrc={selectImage}/>
+            </Section>
+            <Section backgroundColour={"black"}>
+                <CardContainer isCard>
+                    {exhibitions.map((el) => {
+                        return <Card
+                            imgSrc={el.image_url}
+                            title={el.title}
+                            padding="0"
+                            body={el.summary}
+                            linkHref={el.web_url} 
+                            >
+                            </Card>
+                    })}
                 </CardContainer>
+            </Section>
         </div>
     )
 }

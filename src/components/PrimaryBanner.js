@@ -52,7 +52,7 @@ const ContentBlock = styled.div`
 const PrimaryBanner = (props) => {
     return (<BannerDiv>
             <ImageBlock>
-                <img lazy src={props.imgSrc} alt={"Hi"}></img>
+                <img lazy src={props.imgSrc} alt={props.alt}></img>
             </ImageBlock>
             <ContentBlock>
                 <div>

@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components'
 
 const CardContainer = styled.div`
     ${props => { 
-      if (props.hasError) {
-        return (props.hasError && css `
+      if (props.isSquare) {
+        return (props.isSquare && css `
           border: 1px solid red;
           background-color: saddlebrown;
         `)}
       else {
-        return (props.hasError && css `
+        return (props.isSquare && css `
           background-color: white;
           border: 1px solid grey;
           `
@@ -51,7 +51,7 @@ const ImgContainer = styled.div`
 
 const Card = (props) => {
     return (
-        <CardContainer padding={props.padding}>
+        <CardContainer padding={props.padding} isSquare={props.isSquare}>
             <a href={props.linkHref}>
                 <ImgContainer>
                     <img lazy src={props.imgSrc} alt={"Hi"}></img>

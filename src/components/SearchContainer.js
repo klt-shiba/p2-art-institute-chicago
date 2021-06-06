@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CustomInput from './CustomInput';
 import Button from './Button';
 import {Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
-
+import CardContainer from './CardContainer';
+import SearchList from './SearchList';
 
     const SearchContainer = (props) => {
 
@@ -11,7 +11,7 @@ import {Form, FormGroup, Label, Input, FormText } from 'reactstrap';
         const [searchResult, setSearchResult] = useState("")
 
         // Search value array state
-        const [artwork, setArtwork] = useState("")
+        const [artwork, setArtwork] = useState([ ])
 
 
         const handleChange = (e) => {
@@ -29,25 +29,28 @@ import {Form, FormGroup, Label, Input, FormText } from 'reactstrap';
         const checkArray = (array) => {
             if (array.length >= 1) {
                 console.log("Good")
+                console.log(array)
+                setArtwork(array)
             } else {
                 console.log("Not Good")
             }
         }
 
-
         const fetchAPI = async (id) => {
 
             const URL = `https://api.artic.edu/api/v1/artworks/search?q=${id}`
-            
+
+            console.log(URL)
               const response = await fetch(URL)
         
               const art = await response.json()
         
-              console.log(art.data);
               checkArray(art.data)
-              setArtwork(art.data)
-          
         }
+
+        // useEffect(() => {
+        //     fetchAPI()
+        // }, []);
 
         return (
             <div>
@@ -57,8 +60,7 @@ import {Form, FormGroup, Label, Input, FormText } from 'reactstrap';
                     onChange={handleChange}
                     placeholder={"Search something"}
                 />
-                <Button onClick={handleClick}> Search </Button>
-                <FormGroup tag="fieldset">
+                {/* <FormGroup tag="fieldset">
                     <FormGroup check>
                     <Label check>
                         <Input type="radio" name="radio1" />{' '}
@@ -77,9 +79,12 @@ import {Form, FormGroup, Label, Input, FormText } from 'reactstrap';
                         Option three is disabled
                     </Label>
                     </FormGroup>
-                </FormGroup>
-
+                </FormGroup> */}
+                <Button onClick={handleClick}> Search </Button>
             </form>
+            <CardContainer isCard={false}>
+                <SearchList searchArray={artwork}></SearchList>
+            </CardContainer>
             </div>
         )
     }

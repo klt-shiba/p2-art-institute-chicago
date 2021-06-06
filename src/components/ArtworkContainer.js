@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from  './Card';
 import CardContainer from './CardContainer'
 import PrimaryBanner from './PrimaryBanner'
+import Section from './Section'
 
 const ArtworkContainer = () => {
 
@@ -40,10 +41,13 @@ const ArtworkContainer = () => {
 
     return (
         <div>
+            <Section backgroundColour={"black"}>
             <PrimaryBanner
                 imgSrc={imgUrl(artwork[0].image_id)}
             />
-            <CardContainer>
+            </Section>
+            <Section backgroundColour={"black"}>
+            <CardContainer isCard>
             {randomiseArray(artwork).map((el) => {
                 return <Card
                         imgSrc={imgUrl(el.image_id)}
@@ -55,7 +59,7 @@ const ArtworkContainer = () => {
                         </Card>
                 })}
                 </CardContainer>
-            {/* <Button hasVariant="Primary">Morning James </Button> */}
+                </Section>
         </div>
     )
 }
