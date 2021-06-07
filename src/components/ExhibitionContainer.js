@@ -5,10 +5,11 @@ import PrimaryBanner from './PrimaryBanner'
 import Section from './Section'
 
 const ExhibitionContainer = () => {
-    // Artwork array state
+    
+    // Exhibition state array
     const [exhibitions, setExhibition] = useState([ ])
 
-    // Fetches artwork API
+    // Fetch Exhibitions API
     const fetchAPI = async () => {
 
         const URL = "https://api.artic.edu/api/v1/exhibitions?limit=100"
@@ -18,11 +19,9 @@ const ExhibitionContainer = () => {
         const exhibitions = await response.json()
 
         setExhibition(selectExhibitionsWithImgsAndLink(exhibitions.data))
-        console.log(exhibitions.data)
-        selectImage(setExhibition(selectExhibitionsWithImgsAndLink(exhibitions.data)))
     }
 
-    // Filter out exhibitions with no images
+    // Filter out exhibitions with no images or links
     const selectExhibitionsWithImgsAndLink = (array) => {
         const filteredArray = array.filter((el) => {
             return (el.web_url !== null && el.image_url !== null)
@@ -43,9 +42,13 @@ const ExhibitionContainer = () => {
     }
 
     const selectImage = (array) => {
-        const imageURL = array[0].image_url
-        console.log(imageURL)
-        return imageURL
+        console.log(array)
+        if (array.length === 0) {
+            console.log("empty")
+        } else {
+            const imageURL = randomiseArray(array)[5].image_url
+            return imageURL
+        }
     }
 
 
@@ -53,11 +56,16 @@ const ExhibitionContainer = () => {
         fetchAPI()
     }, []);
 
+    useEffect(() => {
+        selectImage(exhibitions)
+    });
+
     
     return (
         <div>
             <Section backgroundColour={"black"}>
-                <PrimaryBanner imgSrc={selectImage}/>
+                {console.log(exhibitions)}
+                <PrimaryBanner imgSrc={selectImage(exhibitions)}/>
             </Section>
             <Section backgroundColour={"black"}>
                 <CardContainer isCard>

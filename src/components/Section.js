@@ -12,7 +12,7 @@ const Section = styled.section`
   ${up('lg')} {
     padding: 4rem 0rem;
   }
-
 `;
+
 
 export default Section

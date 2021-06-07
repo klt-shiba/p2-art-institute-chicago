@@ -4,7 +4,7 @@ import { Container } from 'reactstrap';
 
 const Exhibitions = () => {
   return (
-      <Container>
+      <Container fluid="xl">
         <ExhibitionContainer/>
       </Container>
   );

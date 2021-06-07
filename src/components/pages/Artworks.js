@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 const Artworks = () => {
   return (
     
-      <Container>
+      <Container fluid="xl">
         <ArtworkContainer/>
       </Container>
   );

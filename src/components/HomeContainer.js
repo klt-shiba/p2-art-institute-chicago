@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Card from  './Card';
-import CardContainer from './CardContainer'
 import PrimaryBanner from './PrimaryBanner'
+import Section from './Section'
 
     const HomeContainer = () => {
 
@@ -11,20 +10,14 @@ import PrimaryBanner from './PrimaryBanner'
         // Fetches artwork API
         const fetchAPI = async () => {
 
-            const URL = "https://api.artic.edu/api/v1/artworks?limit=2"
+            const URL = "https://api.artic.edu/api/v1/artworks?limit=100"
     
             const response = await fetch(URL)
     
             const cards = await response.json()
  
-            setArtwork(cards.data)
+            setArtwork(randomiseArray(cards.data))
 
-        }
-
-        // Create artwork image url
-        const imgUrl = (id) => {
-            const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
-            return URL
         }
 
         // Shuffle order of array
@@ -33,15 +26,24 @@ import PrimaryBanner from './PrimaryBanner'
             return shuffledArray
         }
 
+
+        // Create artwork image url
+        const imgUrl = (id) => {
+            const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
+            return URL
+        }
+
         useEffect(() => {
             return fetchAPI()
         }, []);
 
         return (
             <div>
+                <Section backgroundColour={"black"}>
                 <PrimaryBanner
                     imgSrc={imgUrl(artwork[0].image_id)}
                 />
+                </Section>
             </div>
         )
     }

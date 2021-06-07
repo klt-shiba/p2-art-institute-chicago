@@ -4,6 +4,7 @@ import Button from './Button';
 import {Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import CardContainer from './CardContainer';
 import SearchList from './SearchList';
+import Section from './Section';
 
     const SearchContainer = (props) => {
 
@@ -47,44 +48,23 @@ import SearchList from './SearchList';
         
               checkArray(art.data)
         }
-
-        // useEffect(() => {
-        //     fetchAPI()
-        // }, []);
-
         return (
             <div>
+
+            <Section backgroundColour={"black"}>
             <h1>Search something</h1>
             <form>
                 <CustomInput
                     onChange={handleChange}
                     placeholder={"Search something"}
                 />
-                {/* <FormGroup tag="fieldset">
-                    <FormGroup check>
-                    <Label check>
-                        <Input type="radio" name="radio1" />{' '}
-                        Option one is this and that—be sure to include why it's great
-                    </Label>
-                    </FormGroup>
-                    <FormGroup check>
-                    <Label check>
-                        <Input type="radio" name="radio1" />{' '}
-                        Option two can be something else and selecting it will deselect option one
-                    </Label>
-                    </FormGroup>
-                    <FormGroup check disabled>
-                    <Label check>
-                        <Input type="radio" name="radio1"/>{' '}
-                        Option three is disabled
-                    </Label>
-                    </FormGroup>
-                </FormGroup> */}
                 <Button onClick={handleClick}> Search </Button>
             </form>
             <CardContainer isCard={false}>
                 <SearchList searchArray={artwork}></SearchList>
             </CardContainer>
+
+            </Section>
             </div>
         )
     }
