@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { up } from 'styled-breakpoints';
 import '@fontsource/roboto';
 import Typography from '@material-ui/core/Typography';
-
+import Chip from '@material-ui/core/Chip';
 
 const CardContainer = styled.button`
     
@@ -60,6 +60,7 @@ const ImgContainer = styled.div`
     }
 `
 
+
 const Card = (props) => {
     return (
         <CardContainer 
@@ -77,6 +78,7 @@ const Card = (props) => {
                 <div>
                     <Typography variant="h4" component="h2" gutterBottom>{props.title}</Typography>
                     <Typography variant="body1" gutterBottom>{props.body}</Typography>
+                    <Chip variant="outlined" color="secondary" label={props.label} className={props.chipIsHidden} size="small"/>
                 </div>
         </CardContainer>
     )

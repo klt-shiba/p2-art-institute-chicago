@@ -90,7 +90,8 @@ const ExhibitionContainer = () => {
                 padding="0"
                 body={el.summary}
                 onClick={handleClick}
-                id={el.id} 
+                id={el.id}
+                label={el.alt_image_ids.length} 
                 >
                 </Card>
         })

@@ -70,7 +70,7 @@ const PrimaryBanner = (props) => {
             </ImageBlock>
             <ContentBlock>
                 <div>
-                <Box pb={1}>
+                <Box pb={4}>
                     <Chip variant="outlined" color="secondary" label={props.label} className={props.chipIsHidden} size="small"/>
                 </Box>
                 <Box pb={3}>

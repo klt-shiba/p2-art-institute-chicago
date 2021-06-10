@@ -90,6 +90,7 @@ const ArtworkContainer = () => {
                     padding="0.8rem"
                     body={el.artist_display}
                     id={el.id}
+                    label={el.alt_image_ids.length} 
                     >
                     </Card>
             })
