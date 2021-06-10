@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
 import { up } from 'styled-breakpoints';
+import '@fontsource/roboto';
+import Typography from '@material-ui/core/Typography';
 
 
 const CardContainer = styled.button`
@@ -65,15 +67,16 @@ const Card = (props) => {
             isSquare={props.isSquare}
             id={props.id}
             onClick={props.onClick}
+            linkHref={props.href}
             >
                 <ImgContainer>
-                    <img lazy 
+                    <img loading="lazy" 
                         src={props.imgSrc} 
                         alt={props.altTag}/>
                 </ImgContainer>
                 <div>
-                    <h2>{props.title}</h2>
-                    <p>{props.artist}</p>
+                    <Typography variant="h4" component="h2" gutterBottom>{props.title}</Typography>
+                    <Typography variant="body1" gutterBottom>{props.body}</Typography>
                 </div>
         </CardContainer>
     )

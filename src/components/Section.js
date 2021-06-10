@@ -5,6 +5,7 @@ import { up } from 'styled-breakpoints';
 const Section = styled.section`
   padding: 2rem 0rem;
   background-color: ${props =>props.backgroundColour};
+  display: ${props => props.isHidden ? "none" : "block"};
 
   ${up('md')} {
     padding: 3rem 0rem;

@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components'
 import React, { useState } from 'react';
 import { up } from 'styled-breakpoints';
-import Button from './Button'
+import Button from '@material-ui/core/Button';
+import '@fontsource/roboto';
+import Typography from '@material-ui/core/Typography';
+import Chip from '@material-ui/core/Chip';
+import { spacing } from '@material-ui/system';
+import { Box } from '@material-ui/core';
 
 
 const BannerDiv = styled.div`
@@ -52,15 +57,19 @@ const ContentBlock = styled.div`
 const PrimaryBanner = (props) => {
     return (<BannerDiv>
             <ImageBlock>
-                <img lazy src={props.imgSrc} alt={props.alt}></img>
+                <img lazy src={props.imgSrc} alt={props.alt} ></img>
             </ImageBlock>
             <ContentBlock>
                 <div>
-                <h1>{props.title}"James - This is the h1 heading"</h1>
-                <p>"James - This is a short summary, it should be artwork agnostic"</p>
-                <Button hasVariant={"Primary"}>Hi James</Button>
+                <Box pb={1}>
+                    <Chip variant="outlined" color="secondary" label={props.label} className={props.chipIsHidden} size="small"/>
+                </Box>
+                <Box pb={3}>
+                    <Typography variant="h3" component="h1" gutterBottom>{props.title || "James - This is the title"}</Typography>
+                    <Typography variant="body1" gutterBottom>{props.body || "James - This is a short summary, it should be artwork agnostic"}</Typography>
+                </Box>
+                <Button variant="contained" color="primary" className={props.isHidden}>{props.buttonLabel || "Learn More"}</Button>
                 </div>
-                
             </ContentBlock>
             </BannerDiv>)
 }

@@ -19,11 +19,11 @@ ${props => {
             margin: 0 auto;
 
             ${up('md')} {
-                grid-template-columns: auto auto;
+                grid-template-columns: repeat(2, minmax(0, 1fr));;
                 grid-template-rows: auto auto; 
             }
             ${up('lg')} {
-                grid-template-columns: auto auto auto;
+                grid-template-columns: repeat(3, minmax(0, 1fr));;
                 grid-template-rows: auto auto auto; 
             }`
         )} else {

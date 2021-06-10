@@ -3,12 +3,16 @@ import Card from  './Card';
 import CardContainer from './CardContainer'
 import PrimaryBanner from './PrimaryBanner'
 import Section from './Section'
+import DetailsContainer from './DetailContainer'
 
 const ExhibitionContainer = () => {
     
+    const sections = document.querySelectorAll(Section)
+
     // Exhibition state array
     const [exhibitions, setExhibition] = useState([ ])
-
+    // Single Artwork Object
+    const [artworkObj, setArtworkObj] = useState([])
     // Fetch Exhibitions API
     const fetchAPI = async () => {
 
@@ -21,6 +25,16 @@ const ExhibitionContainer = () => {
         setExhibition(selectExhibitionsWithImgsAndLink(exhibitions.data))
     }
 
+
+    useEffect(() => {
+        fetchAPI()
+    }, []);
+
+    useEffect(() => {
+        selectImage(exhibitions)
+        renderArtworkDetail()
+    });
+
     // Filter out exhibitions with no images or links
     const selectExhibitionsWithImgsAndLink = (array) => {
         const filteredArray = array.filter((el) => {
@@ -28,12 +42,6 @@ const ExhibitionContainer = () => {
         })
         return randomiseArray(filteredArray)
     }
-
-    // // Create artwork image url
-    // const imgUrl = (id) => {
-    //     const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
-    //     return URL
-    // }
 
     // Shuffle order of array
     const randomiseArray = (array) => {
@@ -51,35 +59,90 @@ const ExhibitionContainer = () => {
         }
     }
 
+    const handleClick = (e) => {
+        // Capture click event and Id
+        const eventID = e.currentTarget.id
+        console.log(eventID)
+        findAndReturnArtwork(exhibitions, eventID)
+        toggleSections("artwork-grid-layout")
+        showDetailsSection()
+    }
 
-    useEffect(() => {
-        fetchAPI()
-    }, []);
-
-    useEffect(() => {
-        selectImage(exhibitions)
-    });
-
+    const toggleSections = (id) => { 
+        console.log(id)
+        for (let section of sections) {
+            console.log(section)
+            if (section.id === id) {
+                section.classList.add('hidden')
+            } else {
+                section.classList.remove('hidden')
+            }
+        }   
+    } 
     
+
+    const renderCards = () => {
+        return exhibitions.map((el) => {
+            return <Card
+                imgSrc={el.image_url}
+                title={el.title}
+                padding="0"
+                body={el.summary}
+                onClick={handleClick}
+                id={el.id} 
+                >
+                </Card>
+        })
+    }
+    const findAndReturnArtwork = (array, id) => {
+        const art = array.find((el) => {
+            return el.id == id
+        })
+        console.log(art)
+        setArtworkObj(art)
+    }
+
+    const trimCategories = (category) => {
+
+        if (category.length >= 8) {
+
+            const updatedCategory = category.slice(0, 7) 
+            const showMorePill = "..."
+            updatedCategory.push(`${showMorePill}`)        
+            
+            return updatedCategory
+        
+        } else if (category.length == 0 ) {
+        
+            return false
+        
+        } else {
+            return category
+        }
+    }
+
+    const showDetailsSection = () => {
+        const detailsSection = document.getElementById("artwork-details-layout")
+        detailsSection.classList.remove("hidden")
+    }
+
+    const renderArtworkDetail = () => {
+        return (
+            <Section backgroundColour={"black"} id={"artwork-primary-banner"}>
+                <DetailsContainer data={artworkObj} trimCategory={trimCategories}></DetailsContainer>
+            </Section>
+        )
+    }
+
     return (
         <div>
-            <Section backgroundColour={"black"}>
-                {console.log(exhibitions)}
-                <PrimaryBanner imgSrc={selectImage(exhibitions)}/>
-            </Section>
-            <Section backgroundColour={"black"}>
+            <Section backgroundColour={"black"} id={"artwork-grid-layout"}>
                 <CardContainer isCard>
-                    {exhibitions.map((el) => {
-                        return <Card
-                            imgSrc={el.image_url}
-                            title={el.title}
-                            padding="0"
-                            body={el.summary}
-                            linkHref={el.web_url} 
-                            >
-                            </Card>
-                    })}
+                    {renderCards()}
                 </CardContainer>
+            </Section>
+            <Section backgroundColour={"black"} id={"artwork-details-layout"} className={"hidden"}>
+                {renderArtworkDetail()}
             </Section>
         </div>
     )

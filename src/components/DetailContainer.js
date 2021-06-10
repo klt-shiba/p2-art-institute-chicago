@@ -1,36 +1,64 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import PrimaryBanner from './PrimaryBanner'
+import Chip from '@material-ui/core/Chip';
 
 
 const DetailsContainer = (props) => {
-
-  // Artwork array state
-  const [art, setArt] = useState(["Empty"])
-
-  // Fetches artwork API
-  const fetchAPI = async (id) => {
-
-    const URL = `https://api.artic.edu/api/v1/artworks/${id}`
     
-      const response = await fetch(URL)
+    const artworkObj = props.data
 
-      const art = await response.json()
+    console.log(artworkObj)
 
-      console.log(art);
-
-      setArt(art)
-  
+    // Create artwork image url
+    const imgUrl = (id) => {
+      const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
+      return URL
     }
 
-    useEffect(() => {
-      return fetchAPI()
-    }, []);
 
+    // useEffect(() => {
+    //   renderImages()
+    // }, []);
+
+    // const renderImages = () => {
+    //   const imageIDs = artworkObj.alt_image_ids
+      
+    //   console.log(imageIDs)
+      
+    //   return (
+    //     imageIDs.map((el) => {
+    //       return (<img src={imgUrl(el)}></img>)
+    //     })
+    //   )
+    // }
+
+    const chooseBanner = (array) => {
+
+      if (array.api_model === "artworks") {
+        return (
+          <PrimaryBanner 
+          label={artworkObj.department_title}
+            imgSrc={imgUrl(artworkObj.image_id)}
+            title={artworkObj.title} 
+            body={artworkObj.artist_display} 
+            isHidden={"hidden"} />
+        )
+      } else {
+        return (<PrimaryBanner 
+          label={artworkObj.department_display}
+          imgSrc={artworkObj.image_url}
+          title={artworkObj.title} 
+          body={artworkObj.short_description}
+          />
+        )
+      }
+    }
     return (
-        <div>
-          <h1>{props.title}</h1>
-          <img src={props.imgSrc}></img>
-        </div>
-      );
+      <div>
+            {chooseBanner(artworkObj)}
+            {/* {renderImages()}   */}
+            </div>
+            );
 }
 
 export default DetailsContainer
