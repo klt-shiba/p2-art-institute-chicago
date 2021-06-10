@@ -39,7 +39,7 @@ import Section from './Section'
 
         return (
             <div>
-                <Section backgroundColour={"black"}>
+                <Section backgroundColour={"None"}>
                 <PrimaryBanner
                     imgSrc={imgUrl(artwork[0].image_id)}
                 />

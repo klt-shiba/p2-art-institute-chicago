@@ -28,6 +28,7 @@ const ExhibitionContainer = () => {
 
     useEffect(() => {
         fetchAPI()
+        
     }, []);
 
     useEffect(() => {
@@ -124,11 +125,12 @@ const ExhibitionContainer = () => {
     const showDetailsSection = () => {
         const detailsSection = document.getElementById("artwork-details-layout")
         detailsSection.classList.remove("hidden")
+        renderArtworkDetail()
     }
 
     const renderArtworkDetail = () => {
         return (
-            <Section backgroundColour={"black"} id={"artwork-primary-banner"}>
+            <Section backgroundColour={"none"} id={"artwork-primary-banner"}>
                 <DetailsContainer data={artworkObj} trimCategory={trimCategories}></DetailsContainer>
             </Section>
         )
@@ -136,12 +138,12 @@ const ExhibitionContainer = () => {
 
     return (
         <div>
-            <Section backgroundColour={"black"} id={"artwork-grid-layout"}>
+            <Section backgroundColour={"none"} id={"artwork-grid-layout"}>
                 <CardContainer isCard>
                     {renderCards()}
                 </CardContainer>
             </Section>
-            <Section backgroundColour={"black"} id={"artwork-details-layout"} className={"hidden"}>
+            <Section backgroundColour={"none"} id={"artwork-details-layout"} className={"hidden"}>
                 {renderArtworkDetail()}
             </Section>
         </div>

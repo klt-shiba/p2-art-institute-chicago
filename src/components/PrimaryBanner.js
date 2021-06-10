@@ -15,8 +15,6 @@ const BannerDiv = styled.div`
     ${up('md')} {
         display:flex;
     }
-
-
     `
  
  const ImageBlock = styled.div`
@@ -43,7 +41,7 @@ const ContentBlock = styled.div`
     display: flex;
     align-items: center;
     text-align: left;
-    color: white;
+    color: black;
     padding: 2.4rem 0 0 0;
 
     ${up('md')} {
@@ -54,7 +52,18 @@ const ContentBlock = styled.div`
 
 `
 
+
 const PrimaryBanner = (props) => {
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        redirectURL(props.url)
+    }
+
+    const redirectURL = (url) => {
+        window.open(url);
+    }
+
     return (<BannerDiv>
             <ImageBlock>
                 <img lazy src={props.imgSrc} alt={props.alt} ></img>
@@ -68,7 +77,7 @@ const PrimaryBanner = (props) => {
                     <Typography variant="h3" component="h1" gutterBottom>{props.title || "James - This is the title"}</Typography>
                     <Typography variant="body1" gutterBottom>{props.body || "James - This is a short summary, it should be artwork agnostic"}</Typography>
                 </Box>
-                <Button variant="contained" color="primary" className={props.isHidden}>{props.buttonLabel || "Learn More"}</Button>
+                <Button variant="contained" color="primary" onClick={handleClick} url={props.url} className={props.isHidden}>{props.buttonLabel || "Learn More"}</Button>
                 </div>
             </ContentBlock>
             </BannerDiv>)

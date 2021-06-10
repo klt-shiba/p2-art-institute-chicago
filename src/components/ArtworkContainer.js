@@ -24,11 +24,11 @@ const ArtworkContainer = () => {
 
     // Fetches artwork API
     const fetchAPI = async () => {
-        const URL = "https://collectionapi.metmuseum.org/public/collection/v1/search?q=sunflowers"
+        const URL = "https://api.artic.edu/api/v1/artworks?limit=100"
         const response = await fetch(URL)
         const cards = await response.json()
-        // setArtwork(randomiseArray(cards.data))
-        console.log(cards)
+        setArtwork(randomiseArray(cards.data))
+        console.log(cards.data)
     }
 
      // Fetches Art types API
@@ -139,21 +139,23 @@ const ArtworkContainer = () => {
     }
     const renderArtworkDetail = () => {
         return (
-            <Section backgroundColour={"black"} id={"artwork-primary-banner"}>
+            <Section backgroundColour={""} id={"artwork-primary-banner"}>
                 <DetailsContainer data={artworkObj}></DetailsContainer>
             </Section>
+            
+            
         )
     }
     return (
         <div>
-            <Section backgroundColour={"black"} id={"artwork-grid-layout"}>
+            <Section backgroundColour={"None"} id={"artwork-grid-layout"}>
                 <Typography variant="h2" component="h1" gutterBottom>Artwork</Typography>
-                <RadioGroup array={artworkCategories}></RadioGroup>
+                {/* <RadioGroup array={artworkCategories}></RadioGroup> */}
                 <CardContainer isCard>
                     {renderCards()}
                 </CardContainer>
             </Section>
-            <Section backgroundColour={"black"} id={"artwork-details-layout"}className={"hidden"}>
+            <Section backgroundColour={"None"} id={"artwork-details-layout"}className={"hidden"}>
                 {renderArtworkDetail()}
             </Section>
         </div>
