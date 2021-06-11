@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import styled, { css } from 'styled-components'
-
+import CardContainer from './CardContainer';
 
 const SearchList = (props) => {
 
-    const array = props.newArtworkArray
+    const array = props.searchArray
 
-    console.log(array)
     const renderCards = (array) => {
         
         if (array) {
@@ -28,7 +27,7 @@ const SearchList = (props) => {
 
 
     useEffect(() => {
-        renderCards(array) 
+        renderCards() 
     });
 
     // Create artwork image url
@@ -38,11 +37,10 @@ const SearchList = (props) => {
     }
 
     return (
-        <div>
-            <li>
-                {renderCards()}
-            </li>
-        </div>
+        <CardContainer isCard>
+            {renderCards(array)}
+        </CardContainer>
+
     )
 
 }

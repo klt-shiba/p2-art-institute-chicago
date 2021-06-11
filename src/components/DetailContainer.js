@@ -16,17 +16,19 @@ const DetailsContainer = (props) => {
     
     // Favourite Art
     const [faveArt, setFaveArt] = useState(["Empty"])
+    const [buttonLabel, setButtonLabel] = useState("Favourite")
+    const [buttonIcon, setButtonIcon] = useState(<FavoriteIcon />)
+    const [buttonVariant, setButtonVariant] = useState("contained")
+    const [dataBaseItem, setDataBaseItem] = useState()
+    const [favourite, setFavourite] = useState()
 
     const artworkObj = props.data
-
-    console.log(artworkObj)
 
     // Create artwork image url
     const imgUrl = (id) => {
       const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
       return URL
     }
-
     const chooseBanner = (array) => {
 
       if (array.api_model === "artworks") {
@@ -135,30 +137,76 @@ const DetailsContainer = (props) => {
       }
     }
 
-    const favouriteArt = () => {
-
-    }
-    const renderStars = () => {
-      return( 
-        <div style={{ width: '100%' }}>
-          <form action="http://localhost:3000/favourites" method="POST">
-            <Box display="flex" p={1} bgcolor="background.paper">
-            <Box>
-              <Button  
-              variant={buttonVariant}
-              color="Primary"
-              startIcon={buttonIcon}
-              onClick={handleClick}
-              value={"James"}>
-                {buttonLabel}
-              </Button>
-            </Box>
-            </Box>
-          </form>
-        </div>
-      )
+    // FETCH FUNCTION
+    const checkDataBase = async () => {
+      fetch("http://localhost:3000/favourites")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(object) {
+        console.log(object);
+        compareDataBase(object, artworkObj.id)
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
     }
 
+    const compareDataBase = (array, id) => {
+
+      return array.map((el) => {
+
+        if (el.artwork_id === id) {
+          console.log("True")
+          setFavourite(true)
+          return true
+        } else {
+          console.log("False")
+          return false
+        }
+      })
+    }
+
+    const renderStars = (array) => {
+
+      if (array.api_model === "artworks") {
+        
+        decideButton(favourite)
+      } else {
+          return false
+      }
+    }
+    const decideButton = (booleanValue) => {
+
+      if (booleanValue == true) {
+          
+        return ( 
+
+          <div style={{ width: '100%' }}>
+            <form action="http://localhost:3000/favourites" method="POST">
+              <Box display="flex" p={1} bgcolor="background.paper">
+              <Box>
+                <Button  
+                variant={buttonVariant}
+                color="Primary"
+                startIcon={buttonIcon}
+                onClick={handleClick}
+                value={"James"}>
+                  {buttonLabel}
+                </Button>
+              </Box>
+              </Box>
+            </form>
+          </div>
+        )
+
+      } else {
+        
+        return false
+        
+      }
+    }
+    // Add configuration object
     const configurationObject = {
       method: "POST",
       headers: {
@@ -167,10 +215,13 @@ const DetailsContainer = (props) => {
       },
       body: JSON.stringify({
         artwork_id: artworkObj.id,
-        title: artworkObj.title
+        title: artworkObj.title,
+        api_link: artworkObj.api_link,
+        image_id: artworkObj.image_id
       })
     };
 
+    // Delete configuration object
     const deleteConfigurationObject = {
       method: "DELETE",
       headers: {
@@ -179,6 +230,7 @@ const DetailsContainer = (props) => {
       }
     };
 
+    // DETELE FETCH FUNCTION
     const deleteItem = async (a) => {
       fetch(`http://localhost:3000/favourites/${a}`, deleteConfigurationObject)
       .then(function(response) {
@@ -191,11 +243,21 @@ const DetailsContainer = (props) => {
         console.log(err)
       });
     }
+    // UPDATE FETCH FUNCTION
+    const updateDataBase = async () => {
+      fetch("http://localhost:3000/favourites", configurationObject)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(object) {
+        console.log(object);
+        setDataBaseItem(object)
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
+    }
 
-    const [buttonLabel, setButtonLabel] = useState("Favourite")
-    const [buttonIcon, setButtonIcon] = useState(<FavoriteIcon />)
-    const [buttonVariant, setButtonVariant] = useState("contained")
-    
     const handleClick = (e) => {
       e.preventDefault();
       if (buttonLabel === "Favourite") {
@@ -215,26 +277,12 @@ const DetailsContainer = (props) => {
         setButtonVariant("contained")
       }
     }
-    const [dataBaseItem, setDataBaseItem] = useState()
-
-    const updateDataBase = async () => {
-      fetch("http://localhost:3000/favourites", configurationObject)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(object) {
-        console.log(object);
-        setDataBaseItem(object)
-      })
-      .catch(function(err) {
-        console.log(err)
-      });
-    }
+    checkDataBase()
     return (
       <div className={"left"}>
             {chooseBanner(artworkObj)}
             <Box mt={4}>
-              {renderStars()}
+              {renderStars(artworkObj)}
             </Box>
             <Box mt={4}>
               {ChooseTable(artworkObj)}

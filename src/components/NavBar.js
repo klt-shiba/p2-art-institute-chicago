@@ -58,7 +58,7 @@ const NavBar = () => {
             <NavLeft>
                 <StyledNavLinks to={"/artworks"}>Artwork</StyledNavLinks>
                 <StyledNavLinks to={"/exhibitions"}>Exhibitions</StyledNavLinks>
-                <StyledNavLinks to={"/search"}>Search</StyledNavLinks>
+                <StyledNavLinks to={"/search"}>Favourites</StyledNavLinks>
             </NavLeft>
         </Nav>
     </Container>

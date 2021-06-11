@@ -1,115 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import CustomInput from './CustomInput';
-import Button from './Button';
-import {Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import CardContainer from './CardContainer';
 import SearchList from './SearchList';
 import Section from './Section';
-
-    const SearchContainer = (props) => {
-
-        // Search value array state
-        const [searchResult, setSearchResult] = useState("")
-
-        // Search value array state
-        const [artwork, setArtwork] = useState([ ])
-
-         // Search value array state
-         const [newArtworkArray, setNewArtworkArray] = useState([])
+import HomeBanner from './HomeBanner';
 
 
-        const handleChange = (e) => {
-            e.preventDefault()
-            console.log(e.target.value)
-            setSearchResult(e.target.value)
-        }
+const SearchContainer = (props) => {
 
-        const handleClick = (e) => {
-            e.preventDefault()
-            fetchAPI(searchResult)
+        // const handleChange = (e) => {
+        //     e.preventDefault()
+        //     console.log(e.target.value)
+        //     setSearchResult(e.target.value)
+        // }
+
+        // const handleClick = (e) => {
+        //     e.preventDefault()
+        //     fetchAPI(searchResult)
             
-        }
+        // }
 
-        const checkArray = (array) => {
-            if (array.length >= 1) {
-                console.log("Good")
-                console.log(array)
-                setArtwork(array)
-            } else {
-                console.log("Not Good")
-            }
-        }
-
-
-        const fetchAPIObjecst = async (array) => {
-
-            const URL = array
-
-            console.log(URL)
-            const response = await fetch(URL)
+        const [favouriteArtwork, setFavouriteArtwork] = useState([])
         
-            const art = await response.json()
-
-            const updatedArray = art.data
-
-            console.log(updatedArray)
-
-            return updateNewArtworkArray(updatedArray)
-        }
-
-
-        const updateNewArtworkArray = (object) => {
-            const newArray = setNewArtworkArray([...newArtworkArray, object])
-            console.log(newArtworkArray)
-            return newArray
-        }
-
-        const convertIdToUrl = (array) => {
-
-            let arrayOfUrls = array.map((el) => {
-                fetchAPIObjecst(el.api_link)
+        const fetchMockData = async () => {
+            fetch("http://localhost:3000/favourites")
+            .then(function(response) {
+              return response.json();
             })
-
-            return arrayOfUrls
+            .then(function(object) {
+              setFavouriteArtwork(object)
+            })
         }
-
-        const fetchAPI = async (id) => {
-
-            const URL = `https://api.artic.edu/api/v1/artworks/search?q=${id}`
-
-            console.log(URL)
-              const response = await fetch(URL)
-        
-              const art = await response.json()
-        
-              checkArray(art.data)
-              convertIdToUrl(art.data)
-        }
-
-
         useEffect(() => {
-            fetchAPIObjecst() 
+            fetchMockData() 
         }, []);    
-
+    
         return (
-            <div>
-
             <Section backgroundColour={"none"}>
-            <h1>Search something</h1>
-            <form>
-                <CustomInput
-                    onChange={handleChange}
-                    placeholder={"Search something"}
-                />
-                <Button onClick={handleClick}> Search </Button>
-            </form>
-            <CardContainer isCard={false}>
-                <SearchList searchArray={newArtworkArray}></SearchList>
-            </CardContainer>
-
+            <HomeBanner
+                    isSmall 
+                    backgroundImg={"https://www.artic.edu/iiif/2/7bd4542d-3e84-e21a-d259-8d22e20bee0a/full/843,/0/default.jpg"}
+                    title="View your favourites">
+                    </HomeBanner>
+                <SearchList searchArray={favouriteArtwork}></SearchList>
             </Section>
-            </div>
-        )
+            )
     }
 
     export default SearchContainer

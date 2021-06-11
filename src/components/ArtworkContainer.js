@@ -18,36 +18,16 @@ const ArtworkContainer = () => {
     // Single Artwork Object
     const [artworkObj, setArtworkObj] = useState("")
 
-    // Artwork Categories 
-    const [artworkCategories, setArtworkCategories] = useState([])
-
     const sections = document.querySelectorAll(Section)
 
     // Fetches artwork API
     const fetchAPI = async () => {
-        const URL = "https://api.artic.edu/api/v1/artworks?page=10&limit=100"
+        const rndInt = Math.floor(Math.random() * 10) + 1
+        const URL = `https://api.artic.edu/api/v1/artworks?page=${1}&limit=5`
         const response = await fetch(URL)
         const cards = await response.json()
         setArtwork(randomiseArray(cards.data))
         console.log(cards.data)
-    }
-    
-     // Fetches Art types API
-     const fetchArtTypes = async () => {
-        const URL = "https://api.artic.edu/api/v1/artwork-types?limit=100"
-        const response = await fetch(URL)
-        const cards = await response.json()
-        console.log(cards.data)
-        collectArtTypes(cards.data)
-    }
-    // Add Art Types to an ArtworkCategories state
-    const collectArtTypes = (array) => {
-        let artTypeArray = [];
-        const filterOutTitles = array.map((el) => {
-            console.log(el.title)
-            artTypeArray.push(`${el.title}`)
-        })
-        setArtworkCategories(artTypeArray)
     }
 
     // Create artwork image url
@@ -62,9 +42,7 @@ const ArtworkContainer = () => {
     }
     useEffect(() => {
         fetchAPI()
-        fetchArtTypes()
     }, []);
-
     
     const handleClick = (e) => {
         const artworkId = e.currentTarget.id
@@ -113,33 +91,6 @@ const ArtworkContainer = () => {
         const detailsSection = document.getElementById("artwork-details-layout")
         detailsSection.classList.remove("hidden")
     }
-    const trimCategories = (category) => {
-
-        if (category.length >= 8) {
-
-            const updatedCategory = category.slice(0, 7) 
-            const showMorePill = "..."
-            updatedCategory.push(`${showMorePill}`)        
-            
-            return updatedCategory
-        
-        } else {
-        
-            return category
-        
-        }
-    }
-    const renderPills = (category) => {
-
-        const updatedCategory = trimCategories(category)
-
-        return (updatedCategory.map((el) => {
-            console.log(updatedCategory)
-            return (
-                <Chip color="secondary" label={el}/>
-            )
-        }))
-    }
     const renderArtworkDetail = () => {
         return (
             <Section backgroundColour={""} id={"artwork-primary-banner"}>
@@ -147,17 +98,12 @@ const ArtworkContainer = () => {
             </Section>
         )
     }
-
-    const renderBanner = (array) => {
-        return imgUrl(array[2].image_id)
-    }
-
     return (
         <div>
             <Section backgroundColour={"None"} id={"artwork-grid-layout"}>
                 <HomeBanner
                 isSmall 
-                backgroundImg={"https://artic-web.imgix.net/4d01f586-3fa6-4f83-b93f-6eb5db4feddd/exh_supernatural-shakespeare_mega_2000.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=%2C%2C%2C"}
+                backgroundImg={"https://www.artic.edu/iiif/2/382b7234-d877-b0ae-cb13-c5c04f1a2c65/full/843,/0/default.jpg"}
                 title="Artwork">
                 </HomeBanner>
                 <CardContainer isCard>
