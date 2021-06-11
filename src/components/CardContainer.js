@@ -5,8 +5,6 @@ import { up } from 'styled-breakpoints';
 
 const CardContainer = styled.div`
 
-padding:0 24px;
-
 ${props => { 
       if (props.isCard === true) {
         return (props.isCard && css `

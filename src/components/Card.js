@@ -20,14 +20,13 @@ const CardContainer = styled.button`
           `
         )}
     }} 
-    
+    display: flex;
+    align-items: flex-start;
     background-color: white;
-    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.15);
-    border-radius: 1.6rem;
     text-align: left;
     text-decoration: none;
     border: 0px;
-    padding: 0.8rem;
+    padding: 0.4rem 0;
 
     & h2 {
         font-weight: 700;
@@ -36,11 +35,18 @@ const CardContainer = styled.button`
     &:hover img {
         opacity:0.9;
     }
+
+    &:hover h2 {
+        text-decoration: underline;
+    }
     
     & p {
         color: #777;
         font-size: 1.5rem;
         font-weight: 500;
+    }
+    & div {
+        width:100%;
     }
 `;
 
@@ -51,12 +57,12 @@ const ImgContainer = styled.div`
     height: 16.0rem;
     box-sizing: border-box;
     overflow: hidden;
+    background-color: #f2f2f2;
 
     & img {
         width: 100%;
         height: 16.0rem;
         object-fit: cover;
-        border-radius: 1.2rem;
     }
 `
 
@@ -70,15 +76,17 @@ const Card = (props) => {
             onClick={props.onClick}
             linkHref={props.href}
             >
-                <ImgContainer>
+                
+                <div>
+                    <ImgContainer>
                     <img loading="lazy" 
                         src={props.imgSrc} 
                         alt={props.altTag}/>
                 </ImgContainer>
                 <div>
-                    <Typography variant="h4" component="h2" gutterBottom>{props.title}</Typography>
-                    <Typography variant="body1" gutterBottom>{props.body}</Typography>
-                    <Chip variant="outlined" color="secondary" label={props.label} className={props.chipIsHidden} size="small"/>
+                    <Typography variant="h5" component="h2" gutterBottom>{props.title}</Typography>
+                    <Typography variant="body2" gutterBottom>{props.body}</Typography>
+                </div>
                 </div>
         </CardContainer>
     )

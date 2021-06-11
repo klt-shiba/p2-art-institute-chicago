@@ -14,6 +14,9 @@ import Section from './Section';
         // Search value array state
         const [artwork, setArtwork] = useState([ ])
 
+         // Search value array state
+         const [newArtworkArray, setNewArtworkArray] = useState([])
+
 
         const handleChange = (e) => {
             e.preventDefault()
@@ -37,6 +40,39 @@ import Section from './Section';
             }
         }
 
+
+        const fetchAPIObjecst = async (array) => {
+
+            const URL = array
+
+            console.log(URL)
+            const response = await fetch(URL)
+        
+            const art = await response.json()
+
+            const updatedArray = art.data
+
+            console.log(updatedArray)
+
+            return updateNewArtworkArray(updatedArray)
+        }
+
+
+        const updateNewArtworkArray = (object) => {
+            const newArray = setNewArtworkArray([...newArtworkArray, object])
+            console.log(newArtworkArray)
+            return newArray
+        }
+
+        const convertIdToUrl = (array) => {
+
+            let arrayOfUrls = array.map((el) => {
+                fetchAPIObjecst(el.api_link)
+            })
+
+            return arrayOfUrls
+        }
+
         const fetchAPI = async (id) => {
 
             const URL = `https://api.artic.edu/api/v1/artworks/search?q=${id}`
@@ -47,11 +83,18 @@ import Section from './Section';
               const art = await response.json()
         
               checkArray(art.data)
+              convertIdToUrl(art.data)
         }
+
+
+        useEffect(() => {
+            fetchAPIObjecst() 
+        }, []);    
+
         return (
             <div>
 
-            <Section backgroundColour={"black"}>
+            <Section backgroundColour={"none"}>
             <h1>Search something</h1>
             <form>
                 <CustomInput
@@ -61,7 +104,7 @@ import Section from './Section';
                 <Button onClick={handleClick}> Search </Button>
             </form>
             <CardContainer isCard={false}>
-                <SearchList searchArray={artwork}></SearchList>
+                <SearchList searchArray={newArtworkArray}></SearchList>
             </CardContainer>
 
             </Section>

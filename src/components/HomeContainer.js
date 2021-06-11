@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import PrimaryBanner from './PrimaryBanner'
-import Section from './Section'
+import Section from './Section';
+import HomeBanner from './HomeBanner';
 
-    const HomeContainer = () => {
+const HomeContainer = () => {
 
         // Artwork array state
         const [artwork, setArtwork] = useState(["Empty"])
@@ -26,7 +26,6 @@ import Section from './Section'
             return shuffledArray
         }
 
-
         // Create artwork image url
         const imgUrl = (id) => {
             const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
@@ -34,15 +33,16 @@ import Section from './Section'
         }
 
         useEffect(() => {
-            return fetchAPI()
-        }, []);
+            setTimeout(() => {
+                return fetchAPI()
+              }, 3000);
+        });
 
         return (
             <div>
                 <Section backgroundColour={"None"}>
-                <PrimaryBanner
-                    imgSrc={imgUrl(artwork[0].image_id)}
-                />
+                {console.log(imgUrl(artwork[0].image_id))}
+                <HomeBanner backgroundImg={imgUrl(artwork[0].image_id)}></HomeBanner>
                 </Section>
             </div>
         )

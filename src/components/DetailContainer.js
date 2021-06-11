@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PrimaryBanner from './PrimaryBanner'
 import Chip from '@material-ui/core/Chip';
 import { Table } from 'reactstrap';
@@ -7,42 +7,16 @@ import { spacing } from '@material-ui/system';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Button from '@material-ui/core/Button';
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//     justifyContent: 'space-around',
-//     overflow: 'hidden',
-//     backgroundColor: theme.palette.background.paper,
-//   },
-//   gridList: {
-//     width: 500,
-//     height: 450,
-//   },
-// }));
-
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *     cols: 2,
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
 
 const DetailsContainer = (props) => {
     
+    // Favourite Art
+    const [faveArt, setFaveArt] = useState(["Empty"])
+
     const artworkObj = props.data
 
     console.log(artworkObj)
@@ -75,7 +49,6 @@ const DetailsContainer = (props) => {
         )
       }
     }
-
     const ChooseTable = (array) => {
       if (array.api_model === "artworks") {
         return (
@@ -141,8 +114,6 @@ const DetailsContainer = (props) => {
       
       const altImgs = artworkObj.alt_image_ids
 
-      console.log(altImgs)
-
       if (altImgs) {
 
 
@@ -163,11 +134,108 @@ const DetailsContainer = (props) => {
         )
       }
     }
-    
-    return (
 
+    const favouriteArt = () => {
+
+    }
+    const renderStars = () => {
+      return( 
+        <div style={{ width: '100%' }}>
+          <form action="http://localhost:3000/favourites" method="POST">
+            <Box display="flex" p={1} bgcolor="background.paper">
+            <Box>
+              <Button  
+              variant={buttonVariant}
+              color="Primary"
+              startIcon={buttonIcon}
+              onClick={handleClick}
+              value={"James"}>
+                {buttonLabel}
+              </Button>
+            </Box>
+            </Box>
+          </form>
+        </div>
+      )
+    }
+
+    const configurationObject = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        artwork_id: artworkObj.id,
+        title: artworkObj.title
+      })
+    };
+
+    const deleteConfigurationObject = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    };
+
+    const deleteItem = async (a) => {
+      fetch(`http://localhost:3000/favourites/${a}`, deleteConfigurationObject)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(object) {
+        console.log(object);
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
+    }
+
+    const [buttonLabel, setButtonLabel] = useState("Favourite")
+    const [buttonIcon, setButtonIcon] = useState(<FavoriteIcon />)
+    const [buttonVariant, setButtonVariant] = useState("contained")
+    
+    const handleClick = (e) => {
+      e.preventDefault();
+      if (buttonLabel === "Favourite") {
+        setFaveArt(artworkObj)
+        updateDataBase()
+
+        // SetButtonStyles
+        setButtonLabel("Remove")
+        setButtonIcon(<FavoriteBorderIcon />)
+        setButtonVariant("outlined")
+      } else {
+
+        deleteItem(dataBaseItem.id)
+        // SetButtonStyles
+        setButtonLabel("Favourite")
+        setButtonIcon(<FavoriteIcon />)
+        setButtonVariant("contained")
+      }
+    }
+    const [dataBaseItem, setDataBaseItem] = useState()
+
+    const updateDataBase = async () => {
+      fetch("http://localhost:3000/favourites", configurationObject)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(object) {
+        console.log(object);
+        setDataBaseItem(object)
+      })
+      .catch(function(err) {
+        console.log(err)
+      });
+    }
+    return (
       <div className={"left"}>
             {chooseBanner(artworkObj)}
+            <Box mt={4}>
+              {renderStars()}
+            </Box>
             <Box mt={4}>
               {ChooseTable(artworkObj)}
             </Box>

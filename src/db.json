@@ -1,0 +1,7 @@
+{
+    "favourites": [
+      { "id": 1,
+        "artwork_id": 2, 
+        "title": "json-server" }
+    ]
+  }

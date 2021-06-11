@@ -29,7 +29,7 @@ const RadioGroup = (props) => {
     };
 
     const renderChips = (array) => {
-
+        
         return <RadioWrapper> {array.map((el) => {
             return (
                 <Chip variant="outlined" color="secondary" label={el} className={props.chipIsHidden} onClick={handleClick} onDelete={handleDelete}/>

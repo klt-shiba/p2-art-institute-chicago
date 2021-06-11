@@ -8,6 +8,7 @@ import DetailsContainer from './DetailContainer'
 import RadioGroup from './RadioGroup'
 import '@fontsource/roboto';
 import Typography from '@material-ui/core/Typography';
+import HomeBanner from './HomeBanner';
 
 const ArtworkContainer = () => {
 
@@ -24,13 +25,13 @@ const ArtworkContainer = () => {
 
     // Fetches artwork API
     const fetchAPI = async () => {
-        const URL = "https://api.artic.edu/api/v1/artworks?limit=100"
+        const URL = "https://api.artic.edu/api/v1/artworks?page=10&limit=100"
         const response = await fetch(URL)
         const cards = await response.json()
         setArtwork(randomiseArray(cards.data))
         console.log(cards.data)
     }
-
+    
      // Fetches Art types API
      const fetchArtTypes = async () => {
         const URL = "https://api.artic.edu/api/v1/artwork-types?limit=100"
@@ -63,6 +64,8 @@ const ArtworkContainer = () => {
         fetchAPI()
         fetchArtTypes()
     }, []);
+
+    
     const handleClick = (e) => {
         const artworkId = e.currentTarget.id
         // fetchSingleArtwork(artworkId)
@@ -89,8 +92,7 @@ const ArtworkContainer = () => {
                     title={el.title}
                     padding="0.8rem"
                     body={el.artist_display}
-                    id={el.id}
-                    label={el.alt_image_ids.length} 
+                    id={el.id} 
                     >
                     </Card>
             })
@@ -143,15 +145,21 @@ const ArtworkContainer = () => {
             <Section backgroundColour={""} id={"artwork-primary-banner"}>
                 <DetailsContainer data={artworkObj}></DetailsContainer>
             </Section>
-            
-            
         )
     }
+
+    const renderBanner = (array) => {
+        return imgUrl(array[2].image_id)
+    }
+
     return (
         <div>
             <Section backgroundColour={"None"} id={"artwork-grid-layout"}>
-                <Typography variant="h2" component="h1" gutterBottom>Artwork</Typography>
-                {/* <RadioGroup array={artworkCategories}></RadioGroup> */}
+                <HomeBanner
+                isSmall 
+                backgroundImg={"https://artic-web.imgix.net/4d01f586-3fa6-4f83-b93f-6eb5db4feddd/exh_supernatural-shakespeare_mega_2000.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=%2C%2C%2C"}
+                title="Artwork">
+                </HomeBanner>
                 <CardContainer isCard>
                     {renderCards()}
                 </CardContainer>
