@@ -1,58 +1,11 @@
 {
   "favourites": [
     {
-      "artwork_id": 3103,
-      "title": "Lion Hunters: Copying Delacroix's Big Cats",
-      "id": 2
-    },
-    {
-      "artwork_id": 2724,
-      "title": "Ink on Paper: Japanese Monochromatic Prints (2016)",
-      "api_link": "https://api.artic.edu/api/v1/exhibitions/2724",
-      "image_id": null,
-      "id": 3
-    },
-    {
-      "artwork_id": 111363,
-      "title": "Flying Raven: ex libris, from The Raven (Le Corbeau)",
-      "api_link": "https://api.artic.edu/api/v1/artworks/111363",
-      "image_id": "853c1ce4-d44f-e18f-abec-8893e1c14ed3",
-      "id": 4
-    },
-    {
-      "artwork_id": 111362,
-      "title": "Head of a Raven in Profile, from The Raven (Le Corbeau)",
-      "api_link": "https://api.artic.edu/api/v1/artworks/111362",
-      "image_id": "51c30b69-4cdf-449a-a0ca-0347328a4454",
-      "id": 5
-    },
-    {
-      "artwork_id": 66747,
-      "title": "The Little Stringbean",
-      "api_link": "https://api.artic.edu/api/v1/artworks/66747",
-      "image_id": "b84d93ef-bc47-fbb9-2389-8ca9531a1da9",
-      "id": 6
-    },
-    {
-      "artwork_id": 240974,
-      "title": "Sound of Silence",
-      "api_link": "https://api.artic.edu/api/v1/artworks/240974",
-      "image_id": "c6c52d16-1b0e-f182-f40c-55861eeb65f6",
-      "id": 7
-    },
-    {
-      "artwork_id": 201819,
-      "title": "Head Ornament",
-      "api_link": "https://api.artic.edu/api/v1/artworks/201819",
-      "image_id": "376a9864-6f57-34dd-d04f-3d6ee66fbf44",
-      "id": 8
-    },
-    {
       "artwork_id": 24306,
       "title": "Blue and Green Music",
       "api_link": "https://api.artic.edu/api/v1/artworks/24306",
       "image_id": "702580d8-451e-0b0c-bcc1-bac62e5f6631",
-      "id": 9
+      "id": 1
     }
   ]
 }

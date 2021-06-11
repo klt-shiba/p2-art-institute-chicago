@@ -20,7 +20,7 @@ const DetailsContainer = (props) => {
     const [buttonIcon, setButtonIcon] = useState(<FavoriteIcon />)
     const [buttonVariant, setButtonVariant] = useState("contained")
     const [dataBaseItem, setDataBaseItem] = useState()
-    const [favourite, setFavourite] = useState()
+    const [favourite, setFavourite] = useState(false)
 
     const artworkObj = props.data
 
@@ -136,7 +136,6 @@ const DetailsContainer = (props) => {
         )
       }
     }
-
     // FETCH FUNCTION
     const checkDataBase = async () => {
       fetch("http://localhost:3000/favourites")
@@ -153,16 +152,12 @@ const DetailsContainer = (props) => {
     }
 
     const compareDataBase = (array, id) => {
-
       return array.map((el) => {
-
         if (el.artwork_id === id) {
           console.log("True")
           setFavourite(true)
-          return true
         } else {
           console.log("False")
-          return false
         }
       })
     }
@@ -170,18 +165,23 @@ const DetailsContainer = (props) => {
     const renderStars = (array) => {
 
       if (array.api_model === "artworks") {
-        
-        decideButton(favourite)
-      } else {
-          return false
-      }
-    }
-    const decideButton = (booleanValue) => {
 
-      if (booleanValue == true) {
+        if (favourite) {
           
-        return ( 
+          setButtonVariant("contained");
+          setButtonLabel("Favourite");
+          setButtonIcon(<FavoriteIcon />);
 
+
+        } else {
+
+          setButtonVariant("outlined");
+          setButtonLabel("Remove");
+          setButtonIcon(<FavoriteBorderIcon/>);
+
+        }
+
+        return ( 
           <div style={{ width: '100%' }}>
             <form action="http://localhost:3000/favourites" method="POST">
               <Box display="flex" p={1} bgcolor="background.paper">
@@ -201,11 +201,10 @@ const DetailsContainer = (props) => {
         )
 
       } else {
-        
-        return false
-        
+          return false
       }
     }
+
     // Add configuration object
     const configurationObject = {
       method: "POST",
@@ -277,7 +276,13 @@ const DetailsContainer = (props) => {
         setButtonVariant("contained")
       }
     }
+
+    useEffect(() => {
+      renderStars(artworkObj)
+    }, []);
+
     checkDataBase()
+    
     return (
       <div className={"left"}>
             {chooseBanner(artworkObj)}
