@@ -278,11 +278,8 @@ const DetailsContainer = (props) => {
     }
 
     useEffect(() => {
-      renderStars(artworkObj)
+      checkDataBase()
     }, []);
-
-    checkDataBase()
-    
     return (
       <div className={"left"}>
             {chooseBanner(artworkObj)}
