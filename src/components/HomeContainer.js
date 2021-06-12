@@ -10,8 +10,9 @@ const HomeContainer = () => {
         // Fetches artwork API
         const fetchAPI = async () => {
 
-            const URL = "https://api.artic.edu/api/v1/artworks?limit=100"
-    
+            const rndInt = Math.floor(Math.random() * 10) + 1
+            const URL = `https://api.artic.edu/api/v1/artworks?page=${rndInt}&limit=15`
+            
             const response = await fetch(URL)
     
             const cards = await response.json()
@@ -35,7 +36,7 @@ const HomeContainer = () => {
         useEffect(() => {
             setTimeout(() => {
                 return fetchAPI()
-              }, 3000);
+              }, 800);
         });
 
         return (

@@ -18,11 +18,13 @@ const ExhibitionContainer = () => {
     // Fetch Exhibitions API
     const fetchAPI = async () => {
 
-        const URL = "https://api.artic.edu/api/v1/exhibitions??page=3&limit=100"
+        const URL = "https://api.artic.edu/api/v1/exhibitions?limit=100"
 
         const response = await fetch(URL)
 
         const exhibitions = await response.json()
+
+        console.log(exhibitions.data)
 
         setExhibition(selectExhibitionsWithImgsAndLink(exhibitions.data))
     }
@@ -41,16 +43,6 @@ const ExhibitionContainer = () => {
         return shuffledArray
     }
 
-    const selectImage = (array) => {
-        console.log(array)
-        if (array.length === 0) {
-            console.log("empty")
-        } else {
-            const imageURL = randomiseArray(array)[5].image_url
-            return imageURL
-        }
-    }
-
     const handleClick = (e) => {
         // Capture click event and Id
         const eventID = e.currentTarget.id
@@ -58,8 +50,9 @@ const ExhibitionContainer = () => {
         findAndReturnArtwork(exhibitions, eventID)
         toggleSections("artwork-grid-layout")
         showDetailsSection()
+        renderArtworkDetail()
     }
-
+    
     const toggleSections = (id) => { 
         console.log(id)
         for (let section of sections) {
@@ -77,7 +70,7 @@ const ExhibitionContainer = () => {
                 imgSrc={el.image_url}
                 title={el.title}
                 padding="0"
-                body={el.summary}
+                body={el.department_display}
                 onClick={handleClick}
                 id={el.id} 
                 >
@@ -92,24 +85,6 @@ const ExhibitionContainer = () => {
         setArtworkObj(art)
     }
 
-    const trimCategories = (category) => {
-
-        if (category.length >= 8) {
-
-            const updatedCategory = category.slice(0, 7) 
-            const showMorePill = "..."
-            updatedCategory.push(`${showMorePill}`)        
-            
-            return updatedCategory
-        
-        } else if (category.length == 0 ) {
-        
-            return false
-        
-        } else {
-            return category
-        }
-    }
 
     const showDetailsSection = () => {
         const detailsSection = document.getElementById("artwork-details-layout")
@@ -120,7 +95,7 @@ const ExhibitionContainer = () => {
     const renderArtworkDetail = () => {
         return (
             <Section backgroundColour={"none"} id={"artwork-primary-banner"}>
-                <DetailsContainer data={artworkObj} trimCategory={trimCategories}></DetailsContainer>
+                <DetailsContainer data={artworkObj}></DetailsContainer>
             </Section>
         )
     }
@@ -130,7 +105,6 @@ const ExhibitionContainer = () => {
     }, []);
 
     useEffect(() => {
-        selectImage(exhibitions)
         renderArtworkDetail()
     });
 

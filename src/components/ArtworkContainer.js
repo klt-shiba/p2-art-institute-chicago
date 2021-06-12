@@ -23,7 +23,7 @@ const ArtworkContainer = () => {
     // Fetches artwork API
     const fetchAPI = async () => {
         const rndInt = Math.floor(Math.random() * 10) + 1
-        const URL = `https://api.artic.edu/api/v1/artworks?page=${1}&limit=5`
+        const URL = `https://api.artic.edu/api/v1/artworks?page=${rndInt}&limit=20`
         const response = await fetch(URL)
         const cards = await response.json()
         setArtwork(randomiseArray(cards.data))
@@ -57,8 +57,6 @@ const ArtworkContainer = () => {
             return el.id == id
         })
         console.log(art)
-        console.log(art.term_titles)
-        // setArtworkCategories(art.term_titles)
         setArtworkObj(art)
     }
     const renderCards = () => {

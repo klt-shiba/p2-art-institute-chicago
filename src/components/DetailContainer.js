@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PrimaryBanner from './PrimaryBanner'
-import Chip from '@material-ui/core/Chip';
 import { Table } from 'reactstrap';
 import { Box } from '@material-ui/core';
 import { spacing } from '@material-ui/system';
@@ -152,34 +151,31 @@ const DetailsContainer = (props) => {
     }
 
     const compareDataBase = (array, id) => {
-      return array.map((el) => {
+      const comparedDataBase = array.map((el) => {
         if (el.artwork_id === id) {
-          console.log("True")
           setFavourite(true)
         } else {
-          console.log("False")
+          return false
         }
       })
+      return comparedDataBase
     }
 
-    const renderStars = (array) => {
 
-      if (array.api_model === "artworks") {
-
-        if (favourite) {
-          
-          setButtonVariant("contained");
-          setButtonLabel("Favourite");
-          setButtonIcon(<FavoriteIcon />);
-
-
-        } else {
-
+    const updateButton = () => {
+      if (favourite) {
           setButtonVariant("outlined");
           setButtonLabel("Remove");
           setButtonIcon(<FavoriteBorderIcon/>);
+      } else {
+          setButtonVariant("contained");
+          setButtonLabel("Favourite");
+          setButtonIcon(<FavoriteIcon />);
+      }
+    }
+    const renderStars = (array) => {
 
-        }
+      if (array.api_model === "artworks") {
 
         return ( 
           <div style={{ width: '100%' }}>
@@ -276,10 +272,14 @@ const DetailsContainer = (props) => {
         setButtonVariant("contained")
       }
     }
-
     useEffect(() => {
       checkDataBase()
+    });
+
+    useEffect(() => {
+      updateButton()  
     }, []);
+  
     return (
       <div className={"left"}>
             {chooseBanner(artworkObj)}
