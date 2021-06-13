@@ -53,12 +53,12 @@ const NavBar = () => {
         <Box pt={4}>
             <Nav>
                 <NavRight>
-                    <StyledNavLinks exact to={"p2-art-institute-chicago/"}>Home</StyledNavLinks>
+                    <StyledNavLinks exact to={"/"}>Home</StyledNavLinks>
                 </NavRight>
                 <NavLeft>
-                    <StyledNavLinks exact to={"p2-art-institute-chicago/artworks"}>Artwork</StyledNavLinks>
-                    <StyledNavLinks exact to={"p2-art-institute-chicago/exhibitions"}>Exhibitions</StyledNavLinks>
-                    <StyledNavLinks exact to={"p2-art-institute-chicago/favourites"}>Favourites</StyledNavLinks>
+                    <StyledNavLinks exact to={"/artworks"}>Artwork</StyledNavLinks>
+                    <StyledNavLinks exact to={"/exhibitions"}>Exhibitions</StyledNavLinks>
+                    <StyledNavLinks exact to={"/favourites"}>Favourites</StyledNavLinks>
                 </NavLeft>
             </Nav>
         </Box>
