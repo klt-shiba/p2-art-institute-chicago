@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/p2-art-institute-chicago/static/css/main.f4400c07.chunk.css",
+    "main.js": "/p2-art-institute-chicago/static/js/main.bbd9ca51.chunk.js",
+    "main.js.map": "/p2-art-institute-chicago/static/js/main.bbd9ca51.chunk.js.map",
+    "runtime-main.js": "/p2-art-institute-chicago/static/js/runtime-main.91550f9d.js",
+    "runtime-main.js.map": "/p2-art-institute-chicago/static/js/runtime-main.91550f9d.js.map",
+    "static/css/2.2f7d069b.chunk.css": "/p2-art-institute-chicago/static/css/2.2f7d069b.chunk.css",
+    "static/js/2.45f40b5f.chunk.js": "/p2-art-institute-chicago/static/js/2.45f40b5f.chunk.js",
+    "static/js/2.45f40b5f.chunk.js.map": "/p2-art-institute-chicago/static/js/2.45f40b5f.chunk.js.map",
+    "static/js/3.0b253faa.chunk.js": "/p2-art-institute-chicago/static/js/3.0b253faa.chunk.js",
+    "static/js/3.0b253faa.chunk.js.map": "/p2-art-institute-chicago/static/js/3.0b253faa.chunk.js.map",
+    "index.html": "/p2-art-institute-chicago/index.html",
+    "static/css/2.2f7d069b.chunk.css.map": "/p2-art-institute-chicago/static/css/2.2f7d069b.chunk.css.map",
+    "static/css/main.f4400c07.chunk.css.map": "/p2-art-institute-chicago/static/css/main.f4400c07.chunk.css.map",
+    "static/js/2.45f40b5f.chunk.js.LICENSE.txt": "/p2-art-institute-chicago/static/js/2.45f40b5f.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/p2-art-institute-chicago/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91550f9d.js",
+    "static/css/2.2f7d069b.chunk.css",
+    "static/js/2.45f40b5f.chunk.js",
+    "static/css/main.f4400c07.chunk.css",
+    "static/js/main.bbd9ca51.chunk.js"
+  ]
+}
