@@ -51,7 +51,9 @@ const ContentBlock = styled.div`
     }
 
 `
-
+const UpdatedTypography = styled(Typography)`
+    font-family: 'DM Serif Display', serif;
+`;
 
 const PrimaryBanner = (props) => {
 
@@ -74,7 +76,7 @@ const PrimaryBanner = (props) => {
                     <Chip variant="outlined" color="secondary" label={props.label} className={props.chipIsHidden} size="small"/>
                 </Box>
                 <Box pb={3}>
-                    <Typography variant="h3" component="h1" gutterBottom>{props.title || "James - This is the title"}</Typography>
+                    <UpdatedTypography variant="h2" component="h1" gutterBottom>{props.title || "James - This is the title"}</UpdatedTypography>
                     <Typography variant="body1" gutterBottom>{props.body || "James - This is a short summary, it should be artwork agnostic"}</Typography>
                 </Box>
                 <Button variant="contained" color="primary" onClick={handleClick} url={props.url} className={props.isHidden}>{props.buttonLabel || "Learn More"}</Button>

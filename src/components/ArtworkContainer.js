@@ -45,6 +45,7 @@ const ArtworkContainer = () => {
         // fetchSingleArtwork(artworkId)
         findAndReturnArtwork(artwork, artworkId)
         toggleSections("artwork-grid-layout")
+        window.scrollTo(0, 0)
         showDetailsSection()
         renderArtworkDetail()
     }

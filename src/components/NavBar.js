@@ -10,6 +10,8 @@ const Nav = styled.nav`
   background-color: white;
   box-sizing: border-box;
   display:flex;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
 `;
 
 const NavRight = styled.div`
@@ -37,8 +39,8 @@ const StyledNavLinks = styled(NavLink).attrs({ activeClassName })`
 
     &.${activeClassName} {
         font-weight: 600;
-        background-color: #dfe4ff;
-        text-decoration: underline;
+        color: #3f51b5;
+        text-decoration: underline
     }
 
     &:hover{

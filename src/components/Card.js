@@ -50,6 +50,11 @@ const CardContainer = styled.button`
     }
 `;
 
+const UpdatedTypography = styled(Typography)`
+    font-family: 'DM Serif Display', serif;
+`;
+
+
 const ImgContainer = styled.div`
     width: 100%;
     position:relative;
@@ -84,7 +89,7 @@ const Card = (props) => {
                         alt={props.altTag}/>
                 </ImgContainer>
                 <div>
-                    <Typography variant="h5" component="h2" gutterBottom>{props.title}</Typography>
+                    <UpdatedTypography variant="h5" component="h2" gutterBottom>{props.title}</UpdatedTypography>
                     <Typography variant="body2" gutterBottom>{props.body}</Typography>
                 </div>
                 </div>

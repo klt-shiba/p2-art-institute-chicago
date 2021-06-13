@@ -41,6 +41,10 @@ const HomeBannerContainer = styled.div`
     }
 `
 
+const UpdatedTypography = styled(Typography)`
+    font-family: 'DM Serif Display', serif;
+`;
+
 const HomeBanner = (props) => {
 
     const chooseBackgroundImage = (array) => {
@@ -65,7 +69,7 @@ const HomeBanner = (props) => {
         <HomeBannerContainer isSmall={props.isSmall}>
             <img src={chooseBackgroundImage(BackgroundImage)}></img>
             <Box mx="auto">
-                <Typography variant="h1" component="h1">{props.title || "The Art Institute of Chicago"}</Typography>
+                <UpdatedTypography variant="h1" component="h1">{props.title || "The Art Institute of Chicago"}</UpdatedTypography>
             </Box>
         </HomeBannerContainer>
 
