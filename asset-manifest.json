@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.f4400c07.chunk.css",
-    "main.js": "/static/js/main.31221a30.chunk.js",
-    "main.js.map": "/static/js/main.31221a30.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.ee23a15e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.ee23a15e.js.map",
-    "static/css/2.f4427521.chunk.css": "/static/css/2.f4427521.chunk.css",
-    "static/js/2.90561584.chunk.js": "/static/js/2.90561584.chunk.js",
-    "static/js/2.90561584.chunk.js.map": "/static/js/2.90561584.chunk.js.map",
-    "static/js/3.0b253faa.chunk.js": "/static/js/3.0b253faa.chunk.js",
-    "static/js/3.0b253faa.chunk.js.map": "/static/js/3.0b253faa.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.f4427521.chunk.css.map": "/static/css/2.f4427521.chunk.css.map",
-    "static/css/main.f4400c07.chunk.css.map": "/static/css/main.f4400c07.chunk.css.map",
-    "static/js/2.90561584.chunk.js.LICENSE.txt": "/static/js/2.90561584.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2"
+    "main.css": "/p2-art-institute-chicago/static/css/main.f4400c07.chunk.css",
+    "main.js": "/p2-art-institute-chicago/static/js/main.06b0b208.chunk.js",
+    "main.js.map": "/p2-art-institute-chicago/static/js/main.06b0b208.chunk.js.map",
+    "runtime-main.js": "/p2-art-institute-chicago/static/js/runtime-main.91550f9d.js",
+    "runtime-main.js.map": "/p2-art-institute-chicago/static/js/runtime-main.91550f9d.js.map",
+    "static/css/2.2f7d069b.chunk.css": "/p2-art-institute-chicago/static/css/2.2f7d069b.chunk.css",
+    "static/js/2.f4be0423.chunk.js": "/p2-art-institute-chicago/static/js/2.f4be0423.chunk.js",
+    "static/js/2.f4be0423.chunk.js.map": "/p2-art-institute-chicago/static/js/2.f4be0423.chunk.js.map",
+    "static/js/3.0b253faa.chunk.js": "/p2-art-institute-chicago/static/js/3.0b253faa.chunk.js",
+    "static/js/3.0b253faa.chunk.js.map": "/p2-art-institute-chicago/static/js/3.0b253faa.chunk.js.map",
+    "index.html": "/p2-art-institute-chicago/index.html",
+    "static/css/2.2f7d069b.chunk.css.map": "/p2-art-institute-chicago/static/css/2.2f7d069b.chunk.css.map",
+    "static/css/main.f4400c07.chunk.css.map": "/p2-art-institute-chicago/static/css/main.f4400c07.chunk.css.map",
+    "static/js/2.f4be0423.chunk.js.LICENSE.txt": "/p2-art-institute-chicago/static/js/2.f4be0423.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/p2-art-institute-chicago/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.ee23a15e.js",
-    "static/css/2.f4427521.chunk.css",
-    "static/js/2.90561584.chunk.js",
+    "static/js/runtime-main.91550f9d.js",
+    "static/css/2.2f7d069b.chunk.css",
+    "static/js/2.f4be0423.chunk.js",
     "static/css/main.f4400c07.chunk.css",
-    "static/js/main.31221a30.chunk.js"
+    "static/js/main.06b0b208.chunk.js"
   ]
 }
