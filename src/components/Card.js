@@ -42,7 +42,7 @@ const CardContainer = styled.button`
     
     & p {
         color: #777;
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: 500;
     }
     & div {

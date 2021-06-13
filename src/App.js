@@ -1,16 +1,18 @@
 // import logo from './logo.svg';
 import './App.css';
+
 // import Card from './components/Card';
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+import './index.css'
 
 import NavBar from './components/NavBar';
 import Home from './components/pages/Home'
 import Exhibitions from './components/pages/Exhibitions';
 import Artworks from './components/pages/Artworks';
-import Search from './components/pages/Search';
+import Favourite from './components/pages/Favourites';
 
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
           <NavBar/>
           <Route exact path="/exhibitions" component={Exhibitions}/>
           <Route exact path="/artworks" component={Artworks}/>
-          <Route exact path="/search" component={Search}/>
+          <Route exact path="/favourites" component={Favourite}/>
           <Route exact path="/" component={Home}/>
         </div>
     </Router>

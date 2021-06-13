@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components'
-import { Container } from 'reactstrap';
+import { Container } from 'reactstrap'
+import { Box } from '@material-ui/core'
 
 const Nav = styled.nav`
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 0;
   background-color: white;
-  border: 4px solid black;
   box-sizing: border-box;
   display:flex;
 `;
@@ -32,18 +32,17 @@ const activeClassName = 'active'
 const StyledNavLinks = styled(NavLink).attrs({ activeClassName })`
     color: black;
     text-decoration: none;
-    font-weight:800;
-    letter-spacing:0px;
-    margin: 0 0.4rem;
+    padding: 12px 16px;
+    border-radius: 4px;
 
-    
     &.${activeClassName} {
-    color: white;
-    background-color:black
+        font-weight: 600;
+        background-color: #dfe4ff;
+        text-decoration: underline;
     }
 
     &:hover{
-    text-decoration: underline;
+        text-decoration: underline;
     }
 
 `;
@@ -51,16 +50,18 @@ const StyledNavLinks = styled(NavLink).attrs({ activeClassName })`
 const NavBar = () => {
     return (
     <Container fluid="xl">
-        <Nav>
-            <NavRight>
-                <StyledNavLinks to={"/"}>Home</StyledNavLinks>
-            </NavRight>
-            <NavLeft>
-                <StyledNavLinks to={"/artworks"}>Artwork</StyledNavLinks>
-                <StyledNavLinks to={"/exhibitions"}>Exhibitions</StyledNavLinks>
-                <StyledNavLinks to={"/search"}>Favourites</StyledNavLinks>
-            </NavLeft>
-        </Nav>
+        <Box pt={4}>
+            <Nav>
+                <NavRight>
+                    <StyledNavLinks exact to={"/"}>Home</StyledNavLinks>
+                </NavRight>
+                <NavLeft>
+                    <StyledNavLinks exact to={"/artworks"}>Artwork</StyledNavLinks>
+                    <StyledNavLinks exact to={"/exhibitions"}>Exhibitions</StyledNavLinks>
+                    <StyledNavLinks exact to={"/favourites"}>Favourites</StyledNavLinks>
+                </NavLeft>
+            </Nav>
+        </Box>
     </Container>
     )
 }

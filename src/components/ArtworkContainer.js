@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Card from  './Card';
 import CardContainer from './CardContainer'
-import PrimaryBanner from './PrimaryBanner'
 import Section from './Section'
-import Chip from '@material-ui/core/Chip';
 import DetailsContainer from './DetailContainer'
-import RadioGroup from './RadioGroup'
 import '@fontsource/roboto';
-import Typography from '@material-ui/core/Typography';
 import HomeBanner from './HomeBanner';
 
 const ArtworkContainer = () => {
@@ -23,7 +19,7 @@ const ArtworkContainer = () => {
     // Fetches artwork API
     const fetchAPI = async () => {
         const rndInt = Math.floor(Math.random() * 10) + 1
-        const URL = `https://api.artic.edu/api/v1/artworks?page=${rndInt}&limit=20`
+        const URL = `https://api.artic.edu/api/v1/artworks?page=${rndInt}&limit=100`
         const response = await fetch(URL)
         const cards = await response.json()
         setArtwork(randomiseArray(cards.data))
@@ -32,7 +28,7 @@ const ArtworkContainer = () => {
 
     // Create artwork image url
     const imgUrl = (id) => {
-        const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
+        const URL = `https://www.artic.edu/iiif/2/${id}/full/400,/0/default.jpg`
         return URL
     }
     // Shuffle order of array
@@ -101,7 +97,6 @@ const ArtworkContainer = () => {
             <Section backgroundColour={"None"} id={"artwork-grid-layout"}>
                 <HomeBanner
                 isSmall 
-                backgroundImg={"https://www.artic.edu/iiif/2/382b7234-d877-b0ae-cb13-c5c04f1a2c65/full/843,/0/default.jpg"}
                 title="Artwork">
                 </HomeBanner>
                 <CardContainer isCard>

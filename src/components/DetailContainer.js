@@ -9,25 +9,30 @@ import GridListTile from '@material-ui/core/GridListTile';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Button from '@material-ui/core/Button';
-
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const DetailsContainer = (props) => {
-    
-    // Favourite Art
+
+    // SETTING FAVOURITE ARTWORKS
     const [faveArt, setFaveArt] = useState(["Empty"])
+    const [favourite, setFavourite] = useState(false)
+    const [dataBaseItem, setDataBaseItem] = useState()
+
+    // SETTING BUTTON STATES
     const [buttonLabel, setButtonLabel] = useState("Favourite")
     const [buttonIcon, setButtonIcon] = useState(<FavoriteIcon />)
     const [buttonVariant, setButtonVariant] = useState("contained")
-    const [dataBaseItem, setDataBaseItem] = useState()
-    const [favourite, setFavourite] = useState(false)
 
+    // OG SINGLE EXHIBITION OR ARTWORK OBJECT
     const artworkObj = props.data
 
-    // Create artwork image url
+    // CREATE ARTWORK URL FROM ID
     const imgUrl = (id) => {
       const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
       return URL
     }
+
+    // RENDER CORRECT BANNER WITH CONTENT
     const chooseBanner = (array) => {
 
       if (array.api_model === "artworks") {
@@ -50,7 +55,11 @@ const DetailsContainer = (props) => {
         )
       }
     }
+
+    // RENDER CORRECT TABLE WITH CONTENT
     const ChooseTable = (array) => {
+
+      // IF ARTWORK OBJECT RENDER THIS
       if (array.api_model === "artworks") {
         return (
         <Table>
@@ -86,7 +95,10 @@ const DetailsContainer = (props) => {
           </tbody>
         </Table>
         )
+
     } else {
+
+      // IF ARTWORK OBJECT RENDER THIS
       return (
         <Table>
           <tbody>
@@ -111,31 +123,44 @@ const DetailsContainer = (props) => {
       )
       }
     }
-    const renderAltImgs = () => {
-      
-      const altImgs = artworkObj.alt_image_ids
 
+    // RENDER OTHER IMAGES IF THEY EXIST
+    const renderAltImgs = () => {
+  
+      const altImgs = artworkObj.alt_image_ids
+      const altArtworkImgs = artworkObj.artwork_ids
+
+
+      // CHECK AND SEE IF ALT IMAGES EXIST
       if (altImgs) {
 
-
         return (
-    
             <GridList cellHeight={160} cols={3}>
               {altImgs.map((tile) => (
-                <GridListTile key={"James"} cols={tile.cols || 1}>
+                <GridListTile key={""} cols={tile.cols || 1}>
                   <img src={imgUrl(tile)} alt={tile} />
                 </GridListTile>
               ))}
             </GridList>
 
         );
+      } else if (altArtworkImgs) {
+        return (
+          <GridList cellHeight={160} cols={3}>
+            {altArtworkImgs.map((tile) => (
+              <GridListTile key={""} cols={tile.cols || 1}>
+                <img src={imgUrl(tile)} alt={tile} />
+              </GridListTile>
+            ))}5
+          </GridList>
+      );
       } else {
         return (
           <div></div>
         )
       }
     }
-    // FETCH FUNCTION
+    // FETCH FUNCTION FOR MOCK SERVER
     const checkDataBase = async () => {
       fetch("http://localhost:3000/favourites")
       .then(function(response) {
@@ -161,7 +186,6 @@ const DetailsContainer = (props) => {
       return comparedDataBase
     }
 
-
     const updateButton = () => {
       if (favourite) {
           setButtonVariant("outlined");
@@ -172,13 +196,39 @@ const DetailsContainer = (props) => {
           setButtonLabel("Favourite");
           setButtonIcon(<FavoriteIcon />);
       }
+    }  
+    // RENDER TOPBAR
+    // ** INCLUDES BACK AND FAVOURITE BUTTONS
+    const topBar = () => {
+      return (
+        <div style={{ width: '100%' }}>
+            <Button  
+                variant="outlined"
+                color="Primary"
+                startIcon={<ArrowBackIcon/>}
+                onClick={handleBackClick}
+                value={"Back"}>
+                  Back
+                </Button>
+          <div style={{ float: 'right'}}>
+            {renderStars(artworkObj)}
+           </div>
+        </div>
+      )
     }
+    // RENDER TOPBAR
+    // ** CLICK HANDLER FOR BACK BUTTON
+    const handleBackClick = (e) => {
+      e.preventDefault()
+      window.location.reload(false);
+    }
+    // RENDER TOPBAR
+    // ** RENDER FAVOURITE BUTTON
     const renderStars = (array) => {
 
+      // CHECK IF OBJECT IS ARTWORK
       if (array.api_model === "artworks") {
-
         return ( 
-          <div style={{ width: '100%' }}>
             <form action="http://localhost:3000/favourites" method="POST">
               <Box display="flex" p={1} bgcolor="background.paper">
               <Box>
@@ -193,15 +243,12 @@ const DetailsContainer = (props) => {
               </Box>
               </Box>
             </form>
-          </div>
         )
-
       } else {
           return false
       }
     }
-
-    // Add configuration object
+    // ADD CONFIGURATION OBJECT
     const configurationObject = {
       method: "POST",
       headers: {
@@ -215,8 +262,7 @@ const DetailsContainer = (props) => {
         image_id: artworkObj.image_id
       })
     };
-
-    // Delete configuration object
+    // DELETE CONFIGURATION OBJECT
     const deleteConfigurationObject = {
       method: "DELETE",
       headers: {
@@ -224,7 +270,6 @@ const DetailsContainer = (props) => {
         "Accept": "application/json"
       }
     };
-
     // DETELE FETCH FUNCTION
     const deleteItem = async (a) => {
       fetch(`http://localhost:3000/favourites/${a}`, deleteConfigurationObject)
@@ -252,7 +297,7 @@ const DetailsContainer = (props) => {
         console.log(err)
       });
     }
-
+    // FAVOURITE/UNFAVOURITE BUTTON HANDLER
     const handleClick = (e) => {
       e.preventDefault();
       if (buttonLabel === "Favourite") {
@@ -272,20 +317,22 @@ const DetailsContainer = (props) => {
         setButtonVariant("contained")
       }
     }
+
+  
     useEffect(() => {
       checkDataBase()
     });
-
     useEffect(() => {
-      updateButton()  
+      // UPDATING BUTTON STATE
+      updateButton()
     }, []);
   
     return (
       <div className={"left"}>
-            {chooseBanner(artworkObj)}
-            <Box mt={4}>
-              {renderStars(artworkObj)}
+            <Box mb={4} mt={-4}>
+              {topBar()}
             </Box>
+            {chooseBanner(artworkObj)}
             <Box mt={4}>
               {ChooseTable(artworkObj)}
             </Box>

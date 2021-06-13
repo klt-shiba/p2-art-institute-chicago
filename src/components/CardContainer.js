@@ -14,7 +14,7 @@ ${props => {
             row-gap: 15px;
             display: grid;
             width:100%;
-            margin: 0 auto;
+            margin: 32px auto;
 
             ${up('md')} {
                 grid-template-columns: repeat(2, minmax(0, 1fr));;

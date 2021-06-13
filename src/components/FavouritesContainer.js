@@ -6,7 +6,7 @@ import Card from './Card';
 import CardContainer from './CardContainer';
 
 
-const SearchContainer = (props) => {
+const FavouritesContainer = (props) => {
 
       const sections = document.querySelectorAll(Section)
 
@@ -97,13 +97,13 @@ const SearchContainer = (props) => {
         const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
         return URL
       }
+
       return (
         <div>
           <Section backgroundColour={"none"} id={"artwork-grid-layout"}>
             <HomeBanner
-              isSmall 
-              backgroundImg={"https://www.artic.edu/iiif/2/7bd4542d-3e84-e21a-d259-8d22e20bee0a/full/843,/0/default.jpg"}
-              title="View your favourites">
+              isSmall
+              title="Your Favourites">
             </HomeBanner>
             <CardContainer isCard>
               {renderCards(favouriteArtwork)}
@@ -116,4 +116,4 @@ const SearchContainer = (props) => {
         )
     }
 
-    export default SearchContainer
+    export default FavouritesContainer

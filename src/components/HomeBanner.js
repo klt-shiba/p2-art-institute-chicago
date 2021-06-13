@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
-import React, { useState } from 'react';
-import '@fontsource/roboto';
+import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Box } from '@material-ui/core';
+import BackgroundImage from './BackgroundImage'
 
 const HomeBannerContainer = styled.div`
     width: 100%;
@@ -14,7 +14,7 @@ const HomeBannerContainer = styled.div`
     overflow: hidden;
 
     & img {
-        object-fit: cover;
+        object-fit: fill;
         width: 100%;
         height: auto;
         position: absolute;
@@ -43,13 +43,29 @@ const HomeBannerContainer = styled.div`
 
 const HomeBanner = (props) => {
 
+    const chooseBackgroundImage = (array) => {
+        //Randomise Array first
+        const newRandomArray = randomiseArray(array)
+        return newRandomArray[0]  
+    }
+        // Shuffle order of array
+        const randomiseArray = (array) => {
+            const shuffledArray = array.sort((a, b) => 0.5 - Math.random());
+            return shuffledArray
+        }
+        
+    useEffect(() => {
+        setTimeout(() => {
+            return chooseBackgroundImage(BackgroundImage)
+        }, 1000);
+    });
+
     return (
         <div>
-
         <HomeBannerContainer isSmall={props.isSmall}>
-            <img src={props.backgroundImg}></img>
+            <img src={chooseBackgroundImage(BackgroundImage)}></img>
             <Box mx="auto">
-                <Typography variant="h2" component="h1" gutterBottom>{props.title || "Welcome to the Art Institute of Chicago"}</Typography>
+                <Typography variant="h1" component="h1">{props.title || "The Art Institute of Chicago"}</Typography>
             </Box>
         </HomeBannerContainer>
 
