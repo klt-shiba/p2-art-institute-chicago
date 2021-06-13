@@ -21,10 +21,10 @@ function App() {
       <Router>
         <div>
           <NavBar/>
-          <Route exact path="/exhibitions" component={Exhibitions}/>
-          <Route exact path="/artworks" component={Artworks}/>
-          <Route exact path="/favourites" component={Favourite}/>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="p2-art-institute-chicago/exhibitions" component={Exhibitions}/>
+          <Route exact path="p2-art-institute-chicago/artworks" component={Artworks}/>
+          <Route exact path="p2-art-institute-chicago/favourites" component={Favourite}/>
+          <Route exact path="p2-art-institute-chicago/" component={Home}/>
         </div>
     </Router>
 
