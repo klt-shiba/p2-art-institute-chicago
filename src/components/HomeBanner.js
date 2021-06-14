@@ -61,7 +61,7 @@ const HomeBanner = (props) => {
     useEffect(() => {
         setTimeout(() => {
             return chooseBackgroundImage(BackgroundImage)
-        }, 1000);
+        }, 4000);
     });
 
     return (

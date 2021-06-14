@@ -13,9 +13,13 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const DetailsContainer = (props) => {
 
-    // SETTING FAVOURITE ARTWORKS
+    // SETTING FAVOURITE ARTWORKS OBJECT
     const [faveArt, setFaveArt] = useState(["Empty"])
+
+    // SETTING FAVOURITES BOOL
     const [favourite, setFavourite] = useState(false)
+    
+    // SETTING FAVOURITES TO THE DATABASE
     const [dataBaseItem, setDataBaseItem] = useState()
 
     // SETTING BUTTON STATES
@@ -31,7 +35,6 @@ const DetailsContainer = (props) => {
       const URL = `https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`
       return URL
     }
-
     // RENDER CORRECT BANNER WITH CONTENT
     const chooseBanner = (array) => {
 
@@ -55,7 +58,6 @@ const DetailsContainer = (props) => {
         )
       }
     }
-
     // RENDER CORRECT TABLE WITH CONTENT
     const ChooseTable = (array) => {
 
@@ -187,14 +189,18 @@ const DetailsContainer = (props) => {
     }
 
     const updateButton = () => {
+
+      console.log(favourite)
+
       if (favourite) {
           setButtonVariant("outlined");
           setButtonLabel("Remove");
           setButtonIcon(<FavoriteBorderIcon/>);
       } else {
-          setButtonVariant("contained");
-          setButtonLabel("Favourite");
-          setButtonIcon(<FavoriteIcon />);
+        console.log("Not working")
+          // setButtonVariant("outlined");
+          // setButtonLabel("Remove");
+          // setButtonIcon(<FavoriteBorderIcon/>);
       }
     }  
     // RENDER TOPBAR
@@ -311,17 +317,17 @@ const DetailsContainer = (props) => {
       } else {
 
         deleteItem(dataBaseItem.id)
+
         // SetButtonStyles
         setButtonLabel("Favourite")
         setButtonIcon(<FavoriteIcon />)
         setButtonVariant("contained")
       }
     }
-
-  
+    
     useEffect(() => {
       checkDataBase()
-    });
+    }, []);
     useEffect(() => {
       // UPDATING BUTTON STATE
       updateButton()
@@ -332,7 +338,7 @@ const DetailsContainer = (props) => {
             <Box mb={4} mt={-4}>
               {topBar()}
             </Box>
-            {chooseBanner(artworkObj)}
+              {chooseBanner(artworkObj)}
             <Box mt={4}>
               {ChooseTable(artworkObj)}
             </Box>

@@ -11,8 +11,9 @@ const BackgroundImage = [
     "https://www.artic.edu/iiif/2/b272df73-a965-ac37-4172-be4e99483637/full/843,/0/default.jpg",
     "https://artic-web.imgix.net/c9d39c47-9ced-4cd4-a1ef-84edf9fe67ee/2002.378BaglioneGiovanni.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=0%2C89%2C1689%2C952",
     "https://artic-web.imgix.net/4d01f586-3fa6-4f83-b93f-6eb5db4feddd/exh_supernatural-shakespeare_mega_2000.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=%2C%2C%2C",
-    "https://artic-web.imgix.net/1a2d48f8-6e8e-4708-97e4-af62d68b5db9/cal-LostChicago_05242018.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=11%2C15%2C466%2C263"
-    
+    "https://artic-web.imgix.net/1a2d48f8-6e8e-4708-97e4-af62d68b5db9/cal-LostChicago_05242018.jpg?auto=compress%2Cformat&fit=min&fm=jpg&q=80&rect=11%2C15%2C466%2C263",
+    "https://www.artic.edu/iiif/2/3c9eff28-3289-f650-a019-7df9db9d286c/full/843,/0/default.jpg",
+    "https://www.artic.edu/iiif/2/68d3b2d3-facc-0cff-366f-3a1ce2158098/full/843,/0/default.jpg"    
 ]
 
 export default BackgroundImage

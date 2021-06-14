@@ -1,5 +1,32 @@
 {
   "favourites": [
-
+    {
+      "artwork_id": 104227,
+      "title": "Les Chats",
+      "api_link": "https://api.artic.edu/api/v1/artworks/104227",
+      "image_id": "3ddf925f-1516-6fbb-878c-290e6db0b041",
+      "id": 1
+    },
+    {
+      "artwork_id": 111365,
+      "title": "The Raven on the Bust of Pallas (\"Perched upon a bust of Pallas...\"), from The Raven (Le Corbeau)",
+      "api_link": "https://api.artic.edu/api/v1/artworks/111365",
+      "image_id": "8df9b3d6-7e52-3483-e0dd-5b160258241d",
+      "id": 2
+    },
+    {
+      "artwork_id": 111479,
+      "title": "Le Chef-d'oeuvre inconnu",
+      "api_link": "https://api.artic.edu/api/v1/artworks/111479",
+      "image_id": "520f38f8-7ae3-9dd6-f878-7c0d6573b89b",
+      "id": 3
+    },
+    {
+      "artwork_id": 240975,
+      "title": "Three Boats in Harbor, San Vigilio",
+      "api_link": "https://api.artic.edu/api/v1/artworks/240975",
+      "image_id": "57babddc-d879-16e5-5fb6-ea83ff05f21a",
+      "id": 4
+    }
   ]
 }

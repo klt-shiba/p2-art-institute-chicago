@@ -73,11 +73,11 @@ const PrimaryBanner = (props) => {
             <ContentBlock>
                 <div>
                 <Box pb={4}>
-                    <Chip variant="outlined" color="secondary" label={props.label} className={props.chipIsHidden} size="small"/>
+                    <Chip variant="outlined" color="secondary" label={props.label ||"Pending"} className={props.chipIsHidden} size="small"/>
                 </Box>
                 <Box pb={3}>
-                    <UpdatedTypography variant="h2" component="h1" gutterBottom>{props.title || "James - This is the title"}</UpdatedTypography>
-                    <Typography variant="body1" gutterBottom>{props.body || "James - This is a short summary, it should be artwork agnostic"}</Typography>
+                    <UpdatedTypography variant="h2" component="h1" gutterBottom>{props.title || "Pending"}</UpdatedTypography>
+                    <Typography variant="body1" gutterBottom>{props.body || "Pending"}</Typography>
                 </Box>
                 <Button variant="contained" color="primary" onClick={handleClick} url={props.url} className={props.isHidden}>{props.buttonLabel || "Learn More"}</Button>
                 </div>

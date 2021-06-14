@@ -23,6 +23,7 @@ const ArtworkContainer = () => {
         const response = await fetch(URL)
         const cards = await response.json()
         setArtwork(randomiseArray(cards.data))
+        renderCards()
         console.log(cards.data)
     }
 
